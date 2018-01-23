@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;testOS/02.Kernel64/Source/KeyBoard.h&apos; to &apos;Keyboard.h&apos;" description="Rename resource &apos;KeyBoard.h&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="02.Kernel64/Source/KeyBoard.h" name="Keyboard.h" stamp="1516689216869" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;testOS/02.Kernel64/Source/KeyBoard.c&apos; to &apos;Keyboard.c&apos;" description="Rename resource &apos;KeyBoard.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="02.Kernel64/Source/KeyBoard.c" name="Keyboard.c" stamp="1516689221475" updateReferences="true"/>
+</session>
