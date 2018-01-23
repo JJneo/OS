@@ -1,11 +1,11 @@
-23:15:46 **** Incremental Build of configuration Default for project testOS ****
+12:02:39 **** Incremental Build of configuration Default for project testOS ****
 make all 
 
 ================= Build Boot Loader =================
 
 make -C 00.BootLoader
 make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
-make[1]: Nothing to be done for 'all'.
+nasm -o BootLoader.bin BootLoader.asm
 make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
 
 ================= Build Complete =================
@@ -19,19 +19,12 @@ mkdir -p Temp
 === Make Dependancy File ===
 make -C Temp -f ../makefile InternalDependency
 make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
-x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Main.c > Dependency.dep
-cygwin warning:
-  MS-DOS style path detected: Z:\OS\testOS\
-  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
-  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
-  Consult the user's guide for more details about POSIX paths:
-    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
 make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
 === Dependancy Search Complete ===
 make -C Temp -f ../makefile Kernel32.elf
 make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
-x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -c ../Source/Main.c
-x86_64-pc-linux-ld.exe -melf_i386 -T ../elf_i386.x -nostdlib -e Main -Ttext 0x10200 -o Kernel32.elf Main.o
+make[2]: 'Kernel32.elf' is up to date.
 make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
 x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
 cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
@@ -40,21 +33,61 @@ make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
 ================= build Complete ====================
 
 
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+make[2]: 'Kernel64.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel64.elf Kernel64.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+
+================= Build Complete ====================
+
+
 ================= Disk Image Build Start =================
 
-./ImageMaker.exe 00.BootLoader/BootLoader.bin 01.Kernel32/Kernel32.bin
+./ImageMaker.exe 00.BootLoader/BootLoader.bin 01.Kernel32/Kernel32.bin 02.Kernel64/Kernel64.bin
 [INFO] Copy Boot loader to image file
 [INFO] File size is aligned 512Byte
 [INFO] 00.BootLoader/BootLoader.bin size = [512] and sector count = [1]
 [INFO] Copy protected mode kernel to image file
-[INFO] File size [1267] and fill [269] byte
-[INFO] 01.Kernel32/Kernel32.bin size = [1267] and sector count = [3]
+[INFO] File size [2696] and fill [376] byte
+[INFO] 01.Kernel32/Kernel32.bin size = [2696] and sector count = [6]
 [INFO] Start to write kernel information
-[INFO] Total sector count except boot loader [3]
+[INFO] Total sector count except boot loader [6]
 [INFO] Imeage file create complete
 
 ================= All Build Complete =================
 
 
-23:15:46 Build Finished (took 921ms)
+================= Utility Build Start ================
+
+make -C 04.Utility
+make[1]: Entering directory '/cygdrive/z/OS/testOS/04.Utility'
+
+============= Build ImageMaker ===============
+
+make -C 00.ImageMaker
+make[2]: Entering directory '/cygdrive/z/OS/testOS/04.Utility/00.ImageMaker'
+gcc -o ImageMaker.exe ImageMaker.c
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/04.Utility/00.ImageMaker'
+
+=============== Build Complete ===============
+
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/04.Utility'
+
+=================== Utility Build Complete =============
+
+
+12:02:41 Build Finished (took 1s.923ms)
 
