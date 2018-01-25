@@ -84,7 +84,6 @@ void Main( void )
 	
 }
 
-
 // 문자열 출력 함수
 
 void kPrintString( int iX, int iY, const char* pcString )

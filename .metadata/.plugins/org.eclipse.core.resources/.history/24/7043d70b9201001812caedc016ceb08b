@@ -29,7 +29,7 @@ void Main( void )
 	kPrintString(0, 12, "IA-32e C Language Kernel Start....           [PASS]" );
 
 	// GDT, TSS, IDT 관련 설정.
-	kPrintString(0, 13, "GDT Initialize And Switch For IA-32e Mode....[    ]");
+	kPrintString(0, 13, "GDT Initialize And Switch For IA-32e Mode....[    ]")
 	kInitializeGDTTableAndTSS();
 	kLoadGDTR(GDTR_STARTADDRESS);
 	kPrintString(46, 13, "PASS");
@@ -49,12 +49,12 @@ void Main( void )
 	// 키보드 활성화
 	if( kActivateKeyboard() == TRUE )
 	{
-		kPrintString(46,16,"PASS");
+		kPrintString(46,13,"PASS");
 		kChangeKeyboardLED( FALSE, FALSE, FALSE );
 	}
 	else
 	{
-		kPrintString( 45, 16, "FAIL" );
+		kPrintString( 45, 12, "FAIL" );
 		while(1);
 	}
 
@@ -72,7 +72,7 @@ void Main( void )
 				// 키가 눌려졌으면 키의 ASCII코드 값을 화면에 출력
 				if(bFlags & KEY_FLAGS_DOWN )
 				{
-					kPrintString( i++, 17, vcTemp );
+					kPrintString( i++, 14, vcTemp );
 				}
 
 			}
@@ -83,7 +83,6 @@ void Main( void )
 
 	
 }
-
 
 // 문자열 출력 함수
 

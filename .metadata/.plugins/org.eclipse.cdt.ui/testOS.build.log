@@ -1,4 +1,4 @@
-15:34:14 **** Incremental Build of configuration Default for project testOS ****
+14:40:43 **** Incremental Build of configuration Default for project testOS ****
 make all 
 
 ================= Build Boot Loader =================
@@ -30,7 +30,9 @@ make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
 === Dependancy Search Complete ===
 make -C Temp -f ../makefile Kernel32.elf
 make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: Warning: File 'Dependency.dep' has modification time 0.013 s in the future
 make[2]: 'Kernel32.elf' is up to date.
+make[2]: warning:  Clock skew detected.  Your build may be incomplete.
 make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
 x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
 cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
@@ -47,14 +49,15 @@ mkdir -p Temp
 === Make Dependancy File ===
 make -C Temp -f ../makefile InternalDependency
 make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
-x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/Main.c > Dependency.dep
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/Utility.c ../Source/Descriptor.c ../Source/Main.c > Dependency.dep
 make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
 === Dependancy Search Complete ===
 make -C Temp -f ../makefile Kernel64.elf
 make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
-x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Main.c
+make[2]: Warning: File 'Dependency.dep' has modification time 0.018 s in the future
 nasm -f elf64 -o AssemblyUtility.o ../Source/AssemblyUtility.asm
-x86_64-pc-linux-ld.exe -melf_x86_64 -T ../elf_x86_64.x -nostdlib -e Main -Ttext 0x200000 -o Kernel64.elf EntryPoint.o Keyboard.o Main.o AssemblyUtility.o
+x86_64-pc-linux-ld.exe -melf_x86_64 -T ../elf_x86_64.x -nostdlib -e Main -Ttext 0x200000 -o Kernel64.elf EntryPoint.o Keyboard.o Utility.o Descriptor.o Main.o AssemblyUtility.o
+make[2]: warning:  Clock skew detected.  Your build may be incomplete.
 make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
 x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel64.elf Kernel64.bin
 make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
@@ -72,10 +75,10 @@ make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
 [INFO] File size [2724] and fill [348] byte
 [INFO] 01.Kernel32/Kernel32.bin size = [2724] and sector count = [6]
 [INFO] Copy IA-32e mode kernel to image file
-[INFO] File size [2738] and fill [334] byte
-[INFO] 02.Kernel64/Kernel64.bin size = [2738] and sector count = [6]
+[INFO] File size [4274] and fill [334] byte
+[INFO] 02.Kernel64/Kernel64.bin size = [4274] and sector count = [9]
 [INFO] Start to write kernel information
-[INFO] Total sector count except boot loader [12]
+[INFO] Total sector count except boot loader [15]
 [INFO] Total sector count of protected mode kernel [6]
 [INFO] Imeage file create complete
 
@@ -101,5 +104,5 @@ make[1]: Leaving directory '/cygdrive/z/OS/testOS/04.Utility'
 =================== Utility Build Complete =============
 
 
-15:34:16 Build Finished (took 1s.813ms)
+14:40:45 Build Finished (took 1s.763ms)
 

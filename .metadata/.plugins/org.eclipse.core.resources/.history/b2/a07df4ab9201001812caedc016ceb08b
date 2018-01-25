@@ -72,7 +72,7 @@ void Main( void )
 				// 키가 눌려졌으면 키의 ASCII코드 값을 화면에 출력
 				if(bFlags & KEY_FLAGS_DOWN )
 				{
-					kPrintString( i++, 17, vcTemp );
+					kPrintString( i++, 16, vcTemp );
 				}
 
 			}
@@ -83,7 +83,6 @@ void Main( void )
 
 	
 }
-
 
 // 문자열 출력 함수
 
