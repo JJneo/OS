@@ -9,6 +9,8 @@
 #include "Types.h"
 #include "Keyboard.h"
 #include "Descriptor.h"
+#include "PIC.h"
+
 
 void kPrintString( int iX, int iY, const char* pcString );
 
@@ -58,6 +60,17 @@ void Main( void )
 		while(1);
 	}
 
+
+	// PIC를 초기화하는 kInitializePIC()를 호출하고 PIC 컨트롤러에 연결된 모든 디바이스에 대해 인터럽트를 발생할 수 있도록
+	// kMaskPICInterrupt() 함수를 호출합니다. 마지막으로 kEnableInterrupt()를 호출하여 프로세스가 인터럽트를 처리하게 만든다
+	kPrintString(0, 17, "PIC Controller And Interrupt Initialize....  [    ]");
+	// PIC 컨트롤러 초기화 및 모든 인터럽트 활성화
+	kInitializePIC();
+	kMaskPICInterrupt(0);
+	kEnableInterrupt();
+	kPrintString(46, 17, "PASS");
+
+
 	while(1)
 	{
 		// 출력 버퍼( 포트0x60 )이 차 있으면 스캔 코드를 읽을 수 있음
@@ -72,7 +85,7 @@ void Main( void )
 				// 키가 눌려졌으면 키의 ASCII코드 값을 화면에 출력
 				if(bFlags & KEY_FLAGS_DOWN )
 				{
-					kPrintString( i++, 17, vcTemp );
+					kPrintString( i++, 18, vcTemp );
 				}
 
 			}

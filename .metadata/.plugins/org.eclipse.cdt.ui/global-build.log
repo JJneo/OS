@@ -5594,3 +5594,232 @@ make[1]: Leaving directory '/cygdrive/z/OS/testOS/04.Utility'
 
 =================== Utility Build Complete =============
 
+12:35:36 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+cygwin warning:
+  MS-DOS style path detected: Z:\OS\testOS\
+  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Main.c > Dependency.dep
+../Source/Descriptor.c:11:15: fatal error: ISR: No such file or directory
+ #include "ISR"
+               ^
+compilation terminated.
+../makefile:77: recipe for target 'InternalDependency' failed
+make[2]: *** [InternalDependency] Error 1
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+makefile:34: recipe for target 'dep' failed
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+makefile:28: recipe for target 'Kernel64' failed
+make[1]: *** [dep] Error 2
+make: *** [Kernel64] Error 2
+12:36:12 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+nasm -f elf64 -o EntryPoint.o ../Source/EntryPoint.s
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Keyboard.c
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/PIC.c
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Utility.c
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Descriptor.c
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/InterruptHandler.c
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Main.c
+nasm -f elf64 -o AssemblyUtility.o ../Source/AssemblyUtility.asm
+nasm -f elf64 -o ISR.o ../Source/ISR.asm
+x86_64-pc-linux-ld.exe -melf_x86_64 -T ../elf_x86_64.x -nostdlib -e Main -Ttext 0x200000 -o Kernel64.elf EntryPoint.o Keyboard.o PIC.o Utility.o Descriptor.o InterruptHandler.o Main.o AssemblyUtility.o ISR.o
+InterruptHandler.o: In function `kCommonInterruptHandler':
+InterruptHandler.c:(.text+0x17f): undefined reference to `kSendEOIToPIC'
+InterruptHandler.o: In function `kKeyboardHandler':
+InterruptHandler.c:(.text+0x221): undefined reference to `kSendEOIToPIC'
+Main.o: In function `Main':
+Main.c:(.text+0x164): undefined reference to `kMaskPICInterrupt'
+../makefile:81: recipe for target 'Kernel64.elf' failed
+make[2]: *** [Kernel64.elf] Error 1
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+makefile:40: recipe for target 'ExecuteInternalBuild' failed
+make[1]: *** [ExecuteInternalBuild] Error 2
+make: *** [Kernel64] Error 2
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+makefile:28: recipe for target 'Kernel64' failed
+12:44:26 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/PIC.c
+x86_64-pc-linux-ld.exe -melf_x86_64 -T ../elf_x86_64.x -nostdlib -e Main -Ttext 0x200000 -o Kernel64.elf EntryPoint.o Keyboard.o PIC.o Utility.o Descriptor.o InterruptHandler.o Main.o AssemblyUtility.o ISR.o
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel64.elf Kernel64.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+
+================= Build Complete ====================
+
+
+================= Disk Image Build Start =================
+
+./ImageMaker.exe 00.BootLoader/BootLoader.bin 01.Kernel32/Kernel32.bin 02.Kernel64/Kernel64.bin
+[INFO] Copy Boot loader to image file
+[INFO] File size is aligned 512Byte
+[INFO] 00.BootLoader/BootLoader.bin size = [512] and sector count = [1]
+[INFO] Copy protected mode kernel to image file
+[INFO] File size [2724] and fill [348] byte
+[INFO] 01.Kernel32/Kernel32.bin size = [2724] and sector count = [6]
+[INFO] Copy IA-32e mode kernel to image file
+[INFO] File size [10930] and fill [334] byte
+[INFO] 02.Kernel64/Kernel64.bin size = [10930] and sector count = [22]
+[INFO] Start to write kernel information
+[INFO] Total sector count except boot loader [28]
+[INFO] Total sector count of protected mode kernel [6]
+[INFO] Imeage file create complete
+
+================= All Build Complete =================
+
+
+================= Utility Build Start ================
+
+make -C 04.Utility
+make[1]: Entering directory '/cygdrive/z/OS/testOS/04.Utility'
+
+============= Build ImageMaker ===============
+
+make -C 00.ImageMaker
+make[2]: Entering directory '/cygdrive/z/OS/testOS/04.Utility/00.ImageMaker'
+gcc -o ImageMaker.exe ImageMaker.c
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/04.Utility/00.ImageMaker'
+
+=============== Build Complete ===============
+
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/04.Utility'
+
+=================== Utility Build Complete =============
+

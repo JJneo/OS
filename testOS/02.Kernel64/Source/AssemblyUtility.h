@@ -19,5 +19,8 @@ void kLoadGDTR( QWORD qwGDTRAddress );
 void kLoadTR( WORD wTSSSegmentOffest );
 void kLoadIDTR( QWORD qwIDTRAddress );
 
+void kEnableInterrupt( void );
+void kDisableInterrupt( void );
+QWORD kReadRFLAGS( void );
 
 #endif /*__ASSEMBLYUTILITY_H__*/
