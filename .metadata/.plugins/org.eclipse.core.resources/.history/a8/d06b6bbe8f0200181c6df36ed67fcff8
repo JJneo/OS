@@ -62,7 +62,7 @@ BOOL kWaitForACKAndPutOtherScanCode(void)
 		for( i=0; i<0xFFFF; i++)
 		{
 			// 출력 버퍼(포트0x60)이 차 있으면 데이터를 읽을 수 있음
-			if(kIsOutputBufferFull()==TRUE)
+			if(kIsOutPutBufferFull()==TRUE)
 			{
 				break;
 			}
@@ -298,7 +298,7 @@ static KEYBOARDMANAGER gs_stKeyboardManager = { 0, };
 
 // 키를 저장하는 큐와 버퍼 정의
 static QUEUE gs_stKeyQueue;
-static KEYDATA gs_vstKeyQueueBuffer[ KEY_MAXQUEUECOUNT ];
+static QUEUE gs_vstKeyQueueBuffer[ KEY_MAXQUEUECOUNT ];
 
 // 스캔 코드를 ASCII 코드로 변환하는 테이블
 static KEYMAPPINGENTRY gs_vstKeyMappingTable[ KEY_MAPPINGTABLEMAXCOUNT ] =

@@ -1,4 +1,4 @@
-12:44:26 **** Incremental Build of configuration Default for project testOS ****
+20:55:06 **** Incremental Build of configuration Default for project testOS ****
 make all 
 
 ================= Build Boot Loader =================
@@ -41,13 +41,13 @@ mkdir -p Temp
 === Make Dependancy File ===
 make -C Temp -f ../makefile InternalDependency
 make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
-x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Main.c > Dependency.dep
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Queue.c ../Source/Main.c > Dependency.dep
 make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
 === Dependancy Search Complete ===
 make -C Temp -f ../makefile Kernel64.elf
 make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
-x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/PIC.c
-x86_64-pc-linux-ld.exe -melf_x86_64 -T ../elf_x86_64.x -nostdlib -e Main -Ttext 0x200000 -o Kernel64.elf EntryPoint.o Keyboard.o PIC.o Utility.o Descriptor.o InterruptHandler.o Main.o AssemblyUtility.o ISR.o
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Keyboard.c
+x86_64-pc-linux-ld.exe -melf_x86_64 -T ../elf_x86_64.x -nostdlib -e Main -Ttext 0x200000 -o Kernel64.elf EntryPoint.o Keyboard.o PIC.o Utility.o Descriptor.o InterruptHandler.o Queue.o Main.o AssemblyUtility.o ISR.o
 make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
 x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel64.elf Kernel64.bin
 make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
@@ -65,10 +65,10 @@ make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
 [INFO] File size [2724] and fill [348] byte
 [INFO] 01.Kernel32/Kernel32.bin size = [2724] and sector count = [6]
 [INFO] Copy IA-32e mode kernel to image file
-[INFO] File size [10930] and fill [334] byte
-[INFO] 02.Kernel64/Kernel64.bin size = [10930] and sector count = [22]
+[INFO] File size [11954] and fill [334] byte
+[INFO] 02.Kernel64/Kernel64.bin size = [11954] and sector count = [24]
 [INFO] Start to write kernel information
-[INFO] Total sector count except boot loader [28]
+[INFO] Total sector count except boot loader [30]
 [INFO] Total sector count of protected mode kernel [6]
 [INFO] Imeage file create complete
 
@@ -94,5 +94,5 @@ make[1]: Leaving directory '/cygdrive/z/OS/testOS/04.Utility'
 =================== Utility Build Complete =============
 
 
-12:44:28 Build Finished (took 2s.464ms)
+20:55:08 Build Finished (took 2s.244ms)
 

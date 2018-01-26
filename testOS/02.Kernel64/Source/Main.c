@@ -24,6 +24,8 @@ void Main( void )
 	BYTE bTemp;
 	int i=0;
 
+	KEYDATA stData;
+
 
 	//             40칸  "                                         [
 	kPrintString(46, 10,"PASS");
@@ -46,10 +48,10 @@ void Main( void )
 	kPrintString(46, 15, "PASS");
 
 
-	kPrintString(0, 16, "Keyboard Activate....                        [    ]" );
+	kPrintString(0, 16, "Keyboard Activate And Queue Initialize....   [    ]" );
 
 	// 키보드 활성화
-	if( kActivateKeyboard() == TRUE )
+	if( kInitializeKeyboard() == TRUE )
 	{
 		kPrintString(46,16,"PASS");
 		kChangeKeyboardLED( FALSE, FALSE, FALSE );
@@ -73,24 +75,24 @@ void Main( void )
 
 	while(1)
 	{
-		// 출력 버퍼( 포트0x60 )이 차 있으면 스캔 코드를 읽을 수 있음
-		if( kIsOutputBufferFull() ==TRUE )
+		// 키 큐에 데이터가 있으면 키를 처리
+		if( kGetKeyFromKeyQueue(&stData)==TRUE)
 		{
-			// 출력 버퍼(포트 0x60)에서 스캔 코드를 읽어서 저장
-			bTemp = kGetKeyboardScanCode();
-
-			// 스캔 코드를 ASCII 코드로 변환하는 함수를 호출하여 ASCII 코드와 눌림 또는 떨어짐 정보를 반환
-			if( kConvertScanCodeToASCIICode( bTemp, &(vcTemp[0]),&bFlags)==TRUE)
+			// 키가 눌러졌으면 키의 ASCII 코드 값을 화면에 출력
+			if(stData.bFlags & KEY_FLAGS_DOWN)
 			{
-				// 키가 눌려졌으면 키의 ASCII코드 값을 화면에 출력
-				if(bFlags & KEY_FLAGS_DOWN )
+				//키 데이터의 ASCII 코드 값을 저장
+				vcTemp[0] = stData.bASCIICode;
+				kPrintString( i++, 18, vcTemp );
+				// 0이 입력되면 변수를 0으로 나누어 Divide Error 예외 (벡터 0번)을 발생시킴
+				if( vcTemp[0] == '0')
 				{
-					kPrintString( i++, 18, vcTemp );
+					// 아래 코드를 수행하면 Divide Error 예외가 발생하여 커널의 임시 헴들러가 수행됨
+					bTemp=bTemp/0;
 				}
-
 			}
-
 		}
+
 
 	}
 
