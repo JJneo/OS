@@ -86,7 +86,6 @@ void Main( void )
 	kPrintString(46, 9,"PASS");
 
 	// IA-32e 모드로 전환
-	kPrintString( 0, 10, "Call 64bit Kernel From 32bit Kernel....      [    ]" );
 	kSwitchAndExecute64bitKernel();
 
 	while(1);

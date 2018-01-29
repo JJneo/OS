@@ -223,7 +223,7 @@ void kSetIDTEntry( IDTENTRY* pstEntry, void* pvHandler, WORD wSelector,
 
 /**
  *  임시 예외 또는 인터럽트 핸들러
- */
+
 void kDummyHandler( void )
 {
     kPrintString( 0, 0, "====================================================" );
@@ -234,4 +234,4 @@ void kDummyHandler( void )
     while( 1 ) ;
 }
 
-
+ */

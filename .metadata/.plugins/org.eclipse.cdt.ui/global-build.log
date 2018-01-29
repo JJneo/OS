@@ -5983,3 +5983,2016 @@ make[1]: Leaving directory '/cygdrive/z/OS/testOS/04.Utility'
 
 =================== Utility Build Complete =============
 
+15:01:59 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+cygwin warning:
+  MS-DOS style path detected: Z:\OS\testOS\
+  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Queue.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Utility.c
+../Source/Utility.c: In function 'kSPrintf':
+../Source/Utility.c:352:9: error: 'iRetrun' undeclared (first use in this function)
+  return iRetrun;
+         ^
+../Source/Utility.c:352:9: note: each undeclared identifier is reported only once for each function it appears in
+../Source/Utility.c: In function 'kVSPrintf':
+../Source/Utility.c:384:5: error: expected ';' before 'iBufferIndex'
+     iBufferIndex += iCopyLength;
+     ^
+../Source/Utility.c:398:18: warning: assignment makes pointer from integer without a cast [enabled by default]
+     pcCopyString = (int) (va_arg(ap,int));
+                  ^
+../makefile:69: recipe for target 'Utility.o' failed
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+makefile:40: recipe for target 'ExecuteInternalBuild' failed
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+makefile:28: recipe for target 'Kernel64' failed
+make[2]: *** [Utility.o] Error 1
+make[1]: *** [ExecuteInternalBuild] Error 2
+make: *** [Kernel64] Error 2
+15:05:00 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+cygwin warning:
+  MS-DOS style path detected: Z:\OS\testOS\
+  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Queue.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Utility.c
+../Source/Utility.c: In function 'kSPrintf':
+../Source/Utility.c:352:9: error: 'iRetrun' undeclared (first use in this function)
+  return iRetrun;
+         ^
+../Source/Utility.c:352:9: note: each undeclared identifier is reported only once for each function it appears in
+../Source/Utility.c: In function 'kVSPrintf':
+../Source/Utility.c:384:5: error: expected ';' before 'iBufferIndex'
+     iBufferIndex += iCopyLength;
+     ^
+../Source/Utility.c:398:18: warning: assignment makes pointer from integer without a cast [enabled by default]
+     pcCopyString = (int) (va_arg(ap,int));
+                  ^
+../makefile:69: recipe for target 'Utility.o' failed
+make[2]: *** [Utility.o] Error 1
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+makefile:40: recipe for target 'ExecuteInternalBuild' failed
+make[1]: *** [ExecuteInternalBuild] Error 2
+make: *** [Kernel64] Error 2
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+makefile:28: recipe for target 'Kernel64' failed
+15:05:27 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+cygwin warning:
+  MS-DOS style path detected: Z:\OS\testOS\
+  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Queue.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Utility.c
+../Source/Utility.c: In function 'kVSPrintf':
+../Source/Utility.c:384:5: error: expected ';' before 'iBufferIndex'
+     iBufferIndex += iCopyLength;
+     ^
+../Source/Utility.c:398:18: warning: assignment makes pointer from integer without a cast [enabled by default]
+     pcCopyString = (int) (va_arg(ap,int));
+                  ^
+../makefile:69: recipe for target 'Utility.o' failed
+make[2]: *** [Utility.o] Error 1
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+makefile:40: recipe for target 'ExecuteInternalBuild' failed
+make[1]: *** [ExecuteInternalBuild] Error 2
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+makefile:28: recipe for target 'Kernel64' failed
+make: *** [Kernel64] Error 2
+15:12:26 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+cygwin warning:
+  MS-DOS style path detected: Z:\OS\testOS\
+  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Queue.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Utility.c
+../Source/Utility.c: In function 'kVSPrintf':
+../Source/Utility.c:384:5: error: expected ';' before 'iBufferIndex'
+     iBufferIndex += iCopyLength;
+     ^
+../Source/Utility.c:398:18: warning: assignment makes pointer from integer without a cast [enabled by default]
+     pcCopyString = (int) (va_arg(ap,int));
+                  ^
+../makefile:69: recipe for target 'Utility.o' failed
+make[2]: *** [Utility.o] Error 1
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+makefile:40: recipe for target 'ExecuteInternalBuild' failed
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+makefile:28: recipe for target 'Kernel64' failed
+make[1]: *** [ExecuteInternalBuild] Error 2
+make: *** [Kernel64] Error 2
+15:12:58 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+cygwin warning:
+  MS-DOS style path detected: Z:\OS\testOS\
+  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Queue.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Utility.c
+../Source/Utility.c: In function 'kVSPrintf':
+../Source/Utility.c:384:5: error: expected ';' before 'iBufferIndex'
+     iBufferIndex += iCopyLength;
+     ^
+../Source/Utility.c:398:18: warning: assignment makes pointer from integer without a cast [enabled by default]
+     pcCopyString = (int) (va_arg(ap,int));
+                  ^
+../makefile:69: recipe for target 'Utility.o' failed
+make[2]: *** [Utility.o] Error 1
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+makefile:40: recipe for target 'ExecuteInternalBuild' failed
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+makefile:28: recipe for target 'Kernel64' failed
+make[1]: *** [ExecuteInternalBuild] Error 2
+make: *** [Kernel64] Error 2
+15:23:31 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+cygwin warning:
+  MS-DOS style path detected: Z:\OS\testOS\
+  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Queue.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Utility.c
+../Source/Utility.c: In function 'kVSPrintf':
+../Source/Utility.c:398:18: warning: assignment makes pointer from integer without a cast [enabled by default]
+     pcCopyString = (int) (va_arg(ap,int));
+                  ^
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Console.c
+In file included from ../Source/Console.c:10:0:
+../Source/Console.h:67:9: warning: unknown action 'pust' for '#pragma pack' - ignored [-Wpragmas]
+ #pragma pack(pust,1)
+         ^
+../Source/Console.h:76:9: warning: #pragma pack (pop) encountered without matching #pragma pack (push) [-Wpragmas]
+ #pragma pack(pop)
+         ^
+../Source/Console.c: In function 'kConsolePrintString':
+../Source/Console.c:124:6: warning: passing argument 1 of 'kMemCpy' makes pointer from integer without a cast [enabled by default]
+      (CONSOLE_HEIGHT-1)*CONSOLE_WIDTH*sizeof(CHARACTER));
+      ^
+In file included from ../Source/Console.h:19:0,
+                 from ../Source/Console.c:10:
+../Source/Utility.h:16:5: note: expected 'void *' but argument is of type 'int'
+ int kMemCpy( void* pvDestination, const void* pvSource, int iSize);
+     ^
+../Source/Console.c:124:6: warning: passing argument 2 of 'kMemCpy' makes pointer from integer without a cast [enabled by default]
+      (CONSOLE_HEIGHT-1)*CONSOLE_WIDTH*sizeof(CHARACTER));
+      ^
+In file included from ../Source/Console.h:19:0,
+                 from ../Source/Console.c:10:
+../Source/Utility.h:16:5: note: expected 'const void *' but argument is of type 'long unsigned int'
+ int kMemCpy( void* pvDestination, const void* pvSource, int iSize);
+     ^
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Descriptor.c
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/InterruptHandler.c
+In file included from ../Source/InterruptHandler.c:12:0:
+../Source/Console.h:67:9: warning: unknown action 'pust' for '#pragma pack' - ignored [-Wpragmas]
+ #pragma pack(pust,1)
+         ^
+../Source/Console.h:76:9: warning: #pragma pack (pop) encountered without matching #pragma pack (push) [-Wpragmas]
+ #pragma pack(pop)
+         ^
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Queue.c
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/ConsoleShell.c
+In file included from ../Source/ConsoleShell.c:9:0:
+../Source/Console.h:67:9: warning: unknown action 'pust' for '#pragma pack' - ignored [-Wpragmas]
+ #pragma pack(pust,1)
+         ^
+../Source/Console.h:76:9: warning: #pragma pack (pop) encountered without matching #pragma pack (push) [-Wpragmas]
+ #pragma pack(pop)
+         ^
+../Source/ConsoleShell.c:18:3: warning: initialization from incompatible pointer type [enabled by default]
+   {"cls", "Clear Screen", "kCls" },
+   ^
+../Source/ConsoleShell.c:18:3: warning: (near initialization for 'gs_vstCommandTable[1].pfFunction') [enabled by default]
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Main.c
+In file included from ../Source/Main.c:13:0:
+../Source/Console.h:67:9: warning: unknown action 'pust' for '#pragma pack' - ignored [-Wpragmas]
+ #pragma pack(pust,1)
+         ^
+../Source/Console.h:76:9: warning: #pragma pack (pop) encountered without matching #pragma pack (push) [-Wpragmas]
+ #pragma pack(pop)
+         ^
+nasm -f elf64 -o AssemblyUtility.o ../Source/AssemblyUtility.asm
+nasm -f elf64 -o ISR.o ../Source/ISR.asm
+x86_64-pc-linux-ld.exe -melf_x86_64 -T ../elf_x86_64.x -nostdlib -e Main -Ttext 0x200000 -o Kernel64.elf EntryPoint.o Keyboard.o PIC.o Utility.o Console.o Descriptor.o InterruptHandler.o Queue.o ConsoleShell.o Main.o AssemblyUtility.o ISR.o
+Utility.o: In function `kIToA':
+Utility.c:(.text+0x395): undefined reference to `kHexToString'
+Console.o: In function `kPrintf':
+Console.c:(.text+0x1ba): undefined reference to `kVSPrint'
+Descriptor.o: In function `kDummyHandler':
+Descriptor.c:(.text+0xa11): undefined reference to `kPrintString'
+Descriptor.c:(.text+0xa2a): undefined reference to `kPrintString'
+Descriptor.c:(.text+0xa43): undefined reference to `kPrintString'
+Descriptor.c:(.text+0xa5c): undefined reference to `kPrintString'
+ConsoleShell.o: In function `kExecuteCommand':
+ConsoleShell.c:(.text+0x212): undefined reference to `kMemcmp'
+Main.o: In function `Main':
+Main.c:(.text+0x31): undefined reference to `kPirntf'
+Main.c:(.text+0x40): undefined reference to `kPirntf'
+Main.c:(.text+0x4f): undefined reference to `kPirntf'
+../makefile:81: recipe for target 'Kernel64.elf' failed
+make[2]: *** [Kernel64.elf] Error 1
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+makefile:40: recipe for target 'ExecuteInternalBuild' failed
+make[1]: *** [ExecuteInternalBuild] Error 2
+make: *** [Kernel64] Error 2
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+makefile:28: recipe for target 'Kernel64' failed
+15:24:28 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+cygwin warning:
+  MS-DOS style path detected: Z:\OS\testOS\
+  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Queue.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/ConsoleShell.c
+In file included from ../Source/ConsoleShell.c:9:0:
+../Source/Console.h:67:9: warning: unknown action 'pust' for '#pragma pack' - ignored [-Wpragmas]
+ #pragma pack(pust,1)
+         ^
+../Source/Console.h:76:9: warning: #pragma pack (pop) encountered without matching #pragma pack (push) [-Wpragmas]
+ #pragma pack(pop)
+         ^
+x86_64-pc-linux-ld.exe -melf_x86_64 -T ../elf_x86_64.x -nostdlib -e Main -Ttext 0x200000 -o Kernel64.elf EntryPoint.o Keyboard.o PIC.o Utility.o Console.o Descriptor.o InterruptHandler.o Queue.o ConsoleShell.o Main.o AssemblyUtility.o ISR.o
+Utility.o: In function `kIToA':
+Utility.c:(.text+0x395): undefined reference to `kHexToString'
+Console.o: In function `kPrintf':
+Console.c:(.text+0x1ba): undefined reference to `kVSPrint'
+Descriptor.o: In function `kDummyHandler':
+Descriptor.c:(.text+0xa11): undefined reference to `kPrintString'
+Descriptor.c:(.text+0xa2a): undefined reference to `kPrintString'
+Descriptor.c:(.text+0xa43): undefined reference to `kPrintString'
+Descriptor.c:(.text+0xa5c): undefined reference to `kPrintString'
+ConsoleShell.o: In function `kExecuteCommand':
+ConsoleShell.c:(.text+0x212): undefined reference to `kMemcmp'
+Main.o: In function `Main':
+Main.c:(.text+0x31): undefined reference to `kPirntf'
+Main.c:(.text+0x40): undefined reference to `kPirntf'
+Main.c:(.text+0x4f): undefined reference to `kPirntf'
+../makefile:81: recipe for target 'Kernel64.elf' failed
+make[2]: *** [Kernel64.elf] Error 1
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+makefile:40: recipe for target 'ExecuteInternalBuild' failed
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+makefile:28: recipe for target 'Kernel64' failed
+make[1]: *** [ExecuteInternalBuild] Error 2
+make: *** [Kernel64] Error 2
+15:25:48 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+cygwin warning:
+  MS-DOS style path detected: Z:\OS\testOS\
+  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Queue.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-ld.exe -melf_x86_64 -T ../elf_x86_64.x -nostdlib -e Main -Ttext 0x200000 -o Kernel64.elf EntryPoint.o Keyboard.o PIC.o Utility.o Console.o Descriptor.o InterruptHandler.o Queue.o ConsoleShell.o Main.o AssemblyUtility.o ISR.o
+Utility.o: In function `kIToA':
+Utility.c:(.text+0x395): undefined reference to `kHexToString'
+Console.o: In function `kPrintf':
+Console.c:(.text+0x1ba): undefined reference to `kVSPrint'
+Descriptor.o: In function `kDummyHandler':
+Descriptor.c:(.text+0xa11): undefined reference to `kPrintString'
+Descriptor.c:(.text+0xa2a): undefined reference to `kPrintString'
+Descriptor.c:(.text+0xa43): undefined reference to `kPrintString'
+Descriptor.c:(.text+0xa5c): undefined reference to `kPrintString'
+ConsoleShell.o: In function `kExecuteCommand':
+ConsoleShell.c:(.text+0x212): undefined reference to `kMemcmp'
+Main.o: In function `Main':
+Main.c:(.text+0x31): undefined reference to `kPirntf'
+Main.c:(.text+0x40): undefined reference to `kPirntf'
+Main.c:(.text+0x4f): undefined reference to `kPirntf'
+../makefile:81: recipe for target 'Kernel64.elf' failed
+make[2]: *** [Kernel64.elf] Error 1
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+makefile:40: recipe for target 'ExecuteInternalBuild' failed
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+makefile:28: recipe for target 'Kernel64' failed
+make[1]: *** [ExecuteInternalBuild] Error 2
+make: *** [Kernel64] Error 2
+15:26:16 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+cygwin warning:
+  MS-DOS style path detected: Z:\OS\testOS\
+  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Queue.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Utility.c
+../Source/Utility.c: In function 'kVSPrintf':
+../Source/Utility.c:398:18: warning: assignment makes pointer from integer without a cast [enabled by default]
+     pcCopyString = (int) (va_arg(ap,int));
+                  ^
+x86_64-pc-linux-ld.exe -melf_x86_64 -T ../elf_x86_64.x -nostdlib -e Main -Ttext 0x200000 -o Kernel64.elf EntryPoint.o Keyboard.o PIC.o Utility.o Console.o Descriptor.o InterruptHandler.o Queue.o ConsoleShell.o Main.o AssemblyUtility.o ISR.o
+Utility.o: In function `kIToA':
+Utility.c:(.text+0x395): undefined reference to `kHexToString'
+Console.o: In function `kPrintf':
+Console.c:(.text+0x1ba): undefined reference to `kVSPrint'
+Descriptor.o: In function `kDummyHandler':
+Descriptor.c:(.text+0xa11): undefined reference to `kPrintString'
+Descriptor.c:(.text+0xa2a): undefined reference to `kPrintString'
+Descriptor.c:(.text+0xa43): undefined reference to `kPrintString'
+Descriptor.c:(.text+0xa5c): undefined reference to `kPrintString'
+ConsoleShell.o: In function `kExecuteCommand':
+ConsoleShell.c:(.text+0x212): undefined reference to `kMemcmp'
+Main.o: In function `Main':
+Main.c:(.text+0x31): undefined reference to `kPirntf'
+Main.c:(.text+0x40): undefined reference to `kPirntf'
+Main.c:(.text+0x4f): undefined reference to `kPirntf'
+../makefile:81: recipe for target 'Kernel64.elf' failed
+make[2]: *** [Kernel64.elf] Error 1
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+makefile:40: recipe for target 'ExecuteInternalBuild' failed
+make[1]: *** [ExecuteInternalBuild] Error 2
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+makefile:28: recipe for target 'Kernel64' failed
+make: *** [Kernel64] Error 2
+15:26:28 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+cygwin warning:
+  MS-DOS style path detected: Z:\OS\testOS\
+  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Queue.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Utility.c
+../Source/Utility.c: In function 'kVSPrintf':
+../Source/Utility.c:398:18: warning: assignment makes pointer from integer without a cast [enabled by default]
+     pcCopyString = (int) (va_arg(ap,int));
+                  ^
+x86_64-pc-linux-ld.exe -melf_x86_64 -T ../elf_x86_64.x -nostdlib -e Main -Ttext 0x200000 -o Kernel64.elf EntryPoint.o Keyboard.o PIC.o Utility.o Console.o Descriptor.o InterruptHandler.o Queue.o ConsoleShell.o Main.o AssemblyUtility.o ISR.o
+Utility.o: In function `kIToA':
+Utility.c:(.text+0x395): undefined reference to `kHexToString'
+Console.o: In function `kPrintf':
+Console.c:(.text+0x1ba): undefined reference to `kVSPrint'
+Descriptor.o: In function `kDummyHandler':
+Descriptor.c:(.text+0xa11): undefined reference to `kPrintString'
+Descriptor.c:(.text+0xa2a): undefined reference to `kPrintString'
+Descriptor.c:(.text+0xa43): undefined reference to `kPrintString'
+Descriptor.c:(.text+0xa5c): undefined reference to `kPrintString'
+ConsoleShell.o: In function `kExecuteCommand':
+ConsoleShell.c:(.text+0x212): undefined reference to `kMemcmp'
+Main.o: In function `Main':
+Main.c:(.text+0x31): undefined reference to `kPirntf'
+Main.c:(.text+0x40): undefined reference to `kPirntf'
+Main.c:(.text+0x4f): undefined reference to `kPirntf'
+../makefile:81: recipe for target 'Kernel64.elf' failed
+make[2]: *** [Kernel64.elf] Error 1
+make[1]: *** [ExecuteInternalBuild] Error 2
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+makefile:40: recipe for target 'ExecuteInternalBuild' failed
+make: *** [Kernel64] Error 2
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+makefile:28: recipe for target 'Kernel64' failed
+15:33:29 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+cygwin warning:
+  MS-DOS style path detected: Z:\OS\testOS\
+  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Queue.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Utility.c
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Main.c
+In file included from ../Source/Main.c:13:0:
+../Source/Console.h:67:9: warning: unknown action 'pust' for '#pragma pack' - ignored [-Wpragmas]
+ #pragma pack(pust,1)
+         ^
+../Source/Console.h:76:9: warning: #pragma pack (pop) encountered without matching #pragma pack (push) [-Wpragmas]
+ #pragma pack(pop)
+         ^
+x86_64-pc-linux-ld.exe -melf_x86_64 -T ../elf_x86_64.x -nostdlib -e Main -Ttext 0x200000 -o Kernel64.elf EntryPoint.o Keyboard.o PIC.o Utility.o Console.o Descriptor.o InterruptHandler.o Queue.o ConsoleShell.o Main.o AssemblyUtility.o ISR.o
+Utility.o: In function `kIToA':
+Utility.c:(.text+0x395): undefined reference to `kHexToString'
+Console.o: In function `kPrintf':
+Console.c:(.text+0x1ba): undefined reference to `kVSPrint'
+Descriptor.o: In function `kDummyHandler':
+Descriptor.c:(.text+0xa11): undefined reference to `kPrintString'
+Descriptor.c:(.text+0xa2a): undefined reference to `kPrintString'
+Descriptor.c:(.text+0xa43): undefined reference to `kPrintString'
+Descriptor.c:(.text+0xa5c): undefined reference to `kPrintString'
+ConsoleShell.o: In function `kExecuteCommand':
+ConsoleShell.c:(.text+0x212): undefined reference to `kMemcmp'
+Main.o: In function `Main':
+Main.c:(.text+0x31): undefined reference to `kPirntf'
+Main.c:(.text+0x40): undefined reference to `kPirntf'
+Main.c:(.text+0x4f): undefined reference to `kPirntf'
+../makefile:81: recipe for target 'Kernel64.elf' failed
+make[2]: *** [Kernel64.elf] Error 1
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+makefile:40: recipe for target 'ExecuteInternalBuild' failed
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+makefile:28: recipe for target 'Kernel64' failed
+make[1]: *** [ExecuteInternalBuild] Error 2
+make: *** [Kernel64] Error 2
+15:33:53 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+cygwin warning:
+  MS-DOS style path detected: Z:\OS\testOS\
+  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Queue.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Console.c
+../Source/Console.c: In function 'kConsolePrintString':
+../Source/Console.c:124:6: warning: passing argument 1 of 'kMemCpy' makes pointer from integer without a cast [enabled by default]
+      (CONSOLE_HEIGHT-1)*CONSOLE_WIDTH*sizeof(CHARACTER));
+      ^
+In file included from ../Source/Console.h:19:0,
+                 from ../Source/Console.c:10:
+../Source/Utility.h:16:5: note: expected 'void *' but argument is of type 'int'
+ int kMemCpy( void* pvDestination, const void* pvSource, int iSize);
+     ^
+../Source/Console.c:124:6: warning: passing argument 2 of 'kMemCpy' makes pointer from integer without a cast [enabled by default]
+      (CONSOLE_HEIGHT-1)*CONSOLE_WIDTH*sizeof(CHARACTER));
+      ^
+In file included from ../Source/Console.h:19:0,
+                 from ../Source/Console.c:10:
+../Source/Utility.h:16:5: note: expected 'const void *' but argument is of type 'long unsigned int'
+ int kMemCpy( void* pvDestination, const void* pvSource, int iSize);
+     ^
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/InterruptHandler.c
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/ConsoleShell.c
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Main.c
+x86_64-pc-linux-ld.exe -melf_x86_64 -T ../elf_x86_64.x -nostdlib -e Main -Ttext 0x200000 -o Kernel64.elf EntryPoint.o Keyboard.o PIC.o Utility.o Console.o Descriptor.o InterruptHandler.o Queue.o ConsoleShell.o Main.o AssemblyUtility.o ISR.o
+Utility.o: In function `kIToA':
+Utility.c:(.text+0x395): undefined reference to `kHexToString'
+Console.o: In function `kPrintf':
+Console.c:(.text+0x1ba): undefined reference to `kVSPrint'
+Descriptor.o: In function `kDummyHandler':
+Descriptor.c:(.text+0xa11): undefined reference to `kPrintString'
+Descriptor.c:(.text+0xa2a): undefined reference to `kPrintString'
+Descriptor.c:(.text+0xa43): undefined reference to `kPrintString'
+Descriptor.c:(.text+0xa5c): undefined reference to `kPrintString'
+ConsoleShell.o: In function `kExecuteCommand':
+ConsoleShell.c:(.text+0x212): undefined reference to `kMemcmp'
+Main.o: In function `Main':
+Main.c:(.text+0x31): undefined reference to `kPirntf'
+Main.c:(.text+0x40): undefined reference to `kPirntf'
+Main.c:(.text+0x4f): undefined reference to `kPirntf'
+../makefile:81: recipe for target 'Kernel64.elf' failed
+make[2]: *** [Kernel64.elf] Error 1
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+makefile:40: recipe for target 'ExecuteInternalBuild' failed
+make[1]: *** [ExecuteInternalBuild] Error 2
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+makefile:28: recipe for target 'Kernel64' failed
+make: *** [Kernel64] Error 2
+15:40:29 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+cygwin warning:
+  MS-DOS style path detected: Z:\OS\testOS\
+  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Queue.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Main.c
+x86_64-pc-linux-ld.exe -melf_x86_64 -T ../elf_x86_64.x -nostdlib -e Main -Ttext 0x200000 -o Kernel64.elf EntryPoint.o Keyboard.o PIC.o Utility.o Console.o Descriptor.o InterruptHandler.o Queue.o ConsoleShell.o Main.o AssemblyUtility.o ISR.o
+Utility.o: In function `kIToA':
+Utility.c:(.text+0x395): undefined reference to `kHexToString'
+Console.o: In function `kPrintf':
+Console.c:(.text+0x1ba): undefined reference to `kVSPrint'
+Descriptor.o: In function `kDummyHandler':
+Descriptor.c:(.text+0xa11): undefined reference to `kPrintString'
+Descriptor.c:(.text+0xa2a): undefined reference to `kPrintString'
+Descriptor.c:(.text+0xa43): undefined reference to `kPrintString'
+Descriptor.c:(.text+0xa5c): undefined reference to `kPrintString'
+ConsoleShell.o: In function `kExecuteCommand':
+ConsoleShell.c:(.text+0x212): undefined reference to `kMemcmp'
+Main.o: In function `Main':
+Main.c:(.text+0x31): undefined reference to `kPirntf'
+Main.c:(.text+0x40): undefined reference to `kPirntf'
+Main.c:(.text+0x4f): undefined reference to `kPirntf'
+../makefile:81: recipe for target 'Kernel64.elf' failed
+make[2]: *** [Kernel64.elf] Error 1
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+makefile:40: recipe for target 'ExecuteInternalBuild' failed
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+makefile:28: recipe for target 'Kernel64' failed
+make[1]: *** [ExecuteInternalBuild] Error 2
+make: *** [Kernel64] Error 2
+15:43:05 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+cygwin warning:
+  MS-DOS style path detected: Z:\OS\testOS\
+  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Queue.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Descriptor.c
+x86_64-pc-linux-ld.exe -melf_x86_64 -T ../elf_x86_64.x -nostdlib -e Main -Ttext 0x200000 -o Kernel64.elf EntryPoint.o Keyboard.o PIC.o Utility.o Console.o Descriptor.o InterruptHandler.o Queue.o ConsoleShell.o Main.o AssemblyUtility.o ISR.o
+Utility.o: In function `kIToA':
+Utility.c:(.text+0x395): undefined reference to `kHexToString'
+Console.o: In function `kPrintf':
+Console.c:(.text+0x1ba): undefined reference to `kVSPrint'
+ConsoleShell.o: In function `kExecuteCommand':
+ConsoleShell.c:(.text+0x212): undefined reference to `kMemcmp'
+Main.o: In function `Main':
+Main.c:(.text+0x31): undefined reference to `kPirntf'
+Main.c:(.text+0x40): undefined reference to `kPirntf'
+Main.c:(.text+0x4f): undefined reference to `kPirntf'
+../makefile:81: recipe for target 'Kernel64.elf' failed
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+make[2]: *** [Kernel64.elf] Error 1
+makefile:40: recipe for target 'ExecuteInternalBuild' failed
+make[1]: *** [ExecuteInternalBuild] Error 2
+make: *** [Kernel64] Error 2
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+makefile:28: recipe for target 'Kernel64' failed
+15:43:19 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+cygwin warning:
+  MS-DOS style path detected: Z:\OS\testOS\
+  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Queue.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Console.c
+../Source/Console.c: In function 'kConsolePrintString':
+../Source/Console.c:124:6: warning: passing argument 1 of 'kMemCpy' makes pointer from integer without a cast [enabled by default]
+      (CONSOLE_HEIGHT-1)*CONSOLE_WIDTH*sizeof(CHARACTER) );
+      ^
+In file included from ../Source/Console.h:19:0,
+                 from ../Source/Console.c:10:
+../Source/Utility.h:16:5: note: expected 'void *' but argument is of type 'int'
+ int kMemCpy( void* pvDestination, const void* pvSource, int iSize);
+     ^
+../Source/Console.c:124:6: warning: passing argument 2 of 'kMemCpy' makes pointer from integer without a cast [enabled by default]
+      (CONSOLE_HEIGHT-1)*CONSOLE_WIDTH*sizeof(CHARACTER) );
+      ^
+In file included from ../Source/Console.h:19:0,
+                 from ../Source/Console.c:10:
+../Source/Utility.h:16:5: note: expected 'const void *' but argument is of type 'long unsigned int'
+ int kMemCpy( void* pvDestination, const void* pvSource, int iSize);
+     ^
+x86_64-pc-linux-ld.exe -melf_x86_64 -T ../elf_x86_64.x -nostdlib -e Main -Ttext 0x200000 -o Kernel64.elf EntryPoint.o Keyboard.o PIC.o Utility.o Console.o Descriptor.o InterruptHandler.o Queue.o ConsoleShell.o Main.o AssemblyUtility.o ISR.o
+Utility.o: In function `kIToA':
+Utility.c:(.text+0x395): undefined reference to `kHexToString'
+Console.o: In function `kPrintf':
+Console.c:(.text+0x1ba): undefined reference to `kVSPrint'
+ConsoleShell.o: In function `kExecuteCommand':
+ConsoleShell.c:(.text+0x212): undefined reference to `kMemcmp'
+Main.o: In function `Main':
+Main.c:(.text+0x31): undefined reference to `kPirntf'
+Main.c:(.text+0x40): undefined reference to `kPirntf'
+Main.c:(.text+0x4f): undefined reference to `kPirntf'
+../makefile:81: recipe for target 'Kernel64.elf' failed
+make[2]: *** [Kernel64.elf] Error 1
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+makefile:40: recipe for target 'ExecuteInternalBuild' failed
+make[1]: *** [ExecuteInternalBuild] Error 2
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+makefile:28: recipe for target 'Kernel64' failed
+make: *** [Kernel64] Error 2
+15:46:54 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+cygwin warning:
+  MS-DOS style path detected: Z:\OS\testOS\
+  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Queue.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Console.c
+../Source/Console.c: In function 'kConsolePrintString':
+../Source/Console.c:125:14: warning: passing argument 1 of 'kMemCpy' makes pointer from integer without a cast [enabled by default]
+              ( CONSOLE_HEIGHT - 1 ) * CONSOLE_WIDTH * sizeof( CHARACTER ) );
+              ^
+In file included from ../Source/Console.h:19:0,
+                 from ../Source/Console.c:10:
+../Source/Utility.h:16:5: note: expected 'void *' but argument is of type 'int'
+ int kMemCpy( void* pvDestination, const void* pvSource, int iSize);
+     ^
+../Source/Console.c:125:14: warning: passing argument 2 of 'kMemCpy' makes pointer from integer without a cast [enabled by default]
+              ( CONSOLE_HEIGHT - 1 ) * CONSOLE_WIDTH * sizeof( CHARACTER ) );
+              ^
+In file included from ../Source/Console.h:19:0,
+                 from ../Source/Console.c:10:
+../Source/Utility.h:16:5: note: expected 'const void *' but argument is of type 'long unsigned int'
+ int kMemCpy( void* pvDestination, const void* pvSource, int iSize);
+     ^
+x86_64-pc-linux-ld.exe -melf_x86_64 -T ../elf_x86_64.x -nostdlib -e Main -Ttext 0x200000 -o Kernel64.elf EntryPoint.o Keyboard.o PIC.o Utility.o Console.o Descriptor.o InterruptHandler.o Queue.o ConsoleShell.o Main.o AssemblyUtility.o ISR.o
+Utility.o: In function `kIToA':
+Utility.c:(.text+0x395): undefined reference to `kHexToString'
+Console.o: In function `kPrintf':
+Console.c:(.text+0x1ba): undefined reference to `kVSPrint'
+ConsoleShell.o: In function `kExecuteCommand':
+ConsoleShell.c:(.text+0x212): undefined reference to `kMemcmp'
+Main.o: In function `Main':
+Main.c:(.text+0x31): undefined reference to `kPirntf'
+Main.c:(.text+0x40): undefined reference to `kPirntf'
+Main.c:(.text+0x4f): undefined reference to `kPirntf'
+../makefile:81: recipe for target 'Kernel64.elf' failed
+make[2]: *** [Kernel64.elf] Error 1
+make[1]: *** [ExecuteInternalBuild] Error 2
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+makefile:40: recipe for target 'ExecuteInternalBuild' failed
+make: *** [Kernel64] Error 2
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+makefile:28: recipe for target 'Kernel64' failed
+15:54:47 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+cygwin warning:
+  MS-DOS style path detected: Z:\OS\testOS\
+  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Queue.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Utility.c
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Console.c
+../Source/Console.c: In function 'kConsolePrintString':
+../Source/Console.c:125:14: warning: passing argument 1 of 'kMemCpy' makes pointer from integer without a cast [enabled by default]
+              ( CONSOLE_HEIGHT - 1 ) * CONSOLE_WIDTH * sizeof( CHARACTER ) );
+              ^
+In file included from ../Source/Console.h:19:0,
+                 from ../Source/Console.c:10:
+../Source/Utility.h:17:5: note: expected 'void *' but argument is of type 'int'
+ int kMemCpy( void* pvDestination, const void* pvSource, int iSize);
+     ^
+../Source/Console.c:125:14: warning: passing argument 2 of 'kMemCpy' makes pointer from integer without a cast [enabled by default]
+              ( CONSOLE_HEIGHT - 1 ) * CONSOLE_WIDTH * sizeof( CHARACTER ) );
+              ^
+In file included from ../Source/Console.h:19:0,
+                 from ../Source/Console.c:10:
+../Source/Utility.h:17:5: note: expected 'const void *' but argument is of type 'long unsigned int'
+ int kMemCpy( void* pvDestination, const void* pvSource, int iSize);
+     ^
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Descriptor.c
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/InterruptHandler.c
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/ConsoleShell.c
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Main.c
+x86_64-pc-linux-ld.exe -melf_x86_64 -T ../elf_x86_64.x -nostdlib -e Main -Ttext 0x200000 -o Kernel64.elf EntryPoint.o Keyboard.o PIC.o Utility.o Console.o Descriptor.o InterruptHandler.o Queue.o ConsoleShell.o Main.o AssemblyUtility.o ISR.o
+Utility.o: In function `kIToA':
+Utility.c:(.text+0x395): undefined reference to `kHexToString'
+Console.o: In function `kPrintf':
+Console.c:(.text+0x1ba): undefined reference to `kVSPrint'
+Main.o: In function `Main':
+Main.c:(.text+0x31): undefined reference to `kPirntf'
+Main.c:(.text+0x40): undefined reference to `kPirntf'
+Main.c:(.text+0x4f): undefined reference to `kPirntf'
+../makefile:81: recipe for target 'Kernel64.elf' failed
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+make[2]: *** [Kernel64.elf] Error 1
+makefile:40: recipe for target 'ExecuteInternalBuild' failed
+make[1]: *** [ExecuteInternalBuild] Error 2
+make: *** [Kernel64] Error 2
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+makefile:28: recipe for target 'Kernel64' failed
+15:56:18 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+cygwin warning:
+  MS-DOS style path detected: Z:\OS\testOS\
+  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Queue.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Main.c
+x86_64-pc-linux-ld.exe -melf_x86_64 -T ../elf_x86_64.x -nostdlib -e Main -Ttext 0x200000 -o Kernel64.elf EntryPoint.o Keyboard.o PIC.o Utility.o Console.o Descriptor.o InterruptHandler.o Queue.o ConsoleShell.o Main.o AssemblyUtility.o ISR.o
+Utility.o: In function `kIToA':
+Utility.c:(.text+0x395): undefined reference to `kHexToString'
+Console.o: In function `kPrintf':
+Console.c:(.text+0x1ba): undefined reference to `kVSPrint'
+../makefile:81: recipe for target 'Kernel64.elf' failed
+make[2]: *** [Kernel64.elf] Error 1
+make[1]: *** [ExecuteInternalBuild] Error 2
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+makefile:40: recipe for target 'ExecuteInternalBuild' failed
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+makefile:28: recipe for target 'Kernel64' failed
+make: *** [Kernel64] Error 2
+15:58:35 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+cygwin warning:
+  MS-DOS style path detected: Z:\OS\testOS\
+  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Queue.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Console.c
+../Source/Console.c: In function 'kConsolePrintString':
+../Source/Console.c:125:14: warning: passing argument 1 of 'kMemCpy' makes pointer from integer without a cast [enabled by default]
+              ( CONSOLE_HEIGHT - 1 ) * CONSOLE_WIDTH * sizeof( CHARACTER ) );
+              ^
+In file included from ../Source/Console.h:19:0,
+                 from ../Source/Console.c:10:
+../Source/Utility.h:17:5: note: expected 'void *' but argument is of type 'int'
+ int kMemCpy( void* pvDestination, const void* pvSource, int iSize);
+     ^
+../Source/Console.c:125:14: warning: passing argument 2 of 'kMemCpy' makes pointer from integer without a cast [enabled by default]
+              ( CONSOLE_HEIGHT - 1 ) * CONSOLE_WIDTH * sizeof( CHARACTER ) );
+              ^
+In file included from ../Source/Console.h:19:0,
+                 from ../Source/Console.c:10:
+../Source/Utility.h:17:5: note: expected 'const void *' but argument is of type 'long unsigned int'
+ int kMemCpy( void* pvDestination, const void* pvSource, int iSize);
+     ^
+x86_64-pc-linux-ld.exe -melf_x86_64 -T ../elf_x86_64.x -nostdlib -e Main -Ttext 0x200000 -o Kernel64.elf EntryPoint.o Keyboard.o PIC.o Utility.o Console.o Descriptor.o InterruptHandler.o Queue.o ConsoleShell.o Main.o AssemblyUtility.o ISR.o
+Utility.o: In function `kIToA':
+Utility.c:(.text+0x395): undefined reference to `kHexToString'
+../makefile:81: recipe for target 'Kernel64.elf' failed
+make[2]: *** [Kernel64.elf] Error 1
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+makefile:40: recipe for target 'ExecuteInternalBuild' failed
+make[1]: *** [ExecuteInternalBuild] Error 2
+make: *** [Kernel64] Error 2
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+makefile:28: recipe for target 'Kernel64' failed
+16:00:23 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+cygwin warning:
+  MS-DOS style path detected: Z:\OS\testOS\
+  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Queue.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Utility.c
+x86_64-pc-linux-ld.exe -melf_x86_64 -T ../elf_x86_64.x -nostdlib -e Main -Ttext 0x200000 -o Kernel64.elf EntryPoint.o Keyboard.o PIC.o Utility.o Console.o Descriptor.o InterruptHandler.o Queue.o ConsoleShell.o Main.o AssemblyUtility.o ISR.o
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel64.elf Kernel64.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+
+================= Build Complete ====================
+
+
+================= Disk Image Build Start =================
+
+./ImageMaker.exe 00.BootLoader/BootLoader.bin 01.Kernel32/Kernel32.bin 02.Kernel64/Kernel64.bin
+[INFO] Copy Boot loader to image file
+[INFO] File size is aligned 512Byte
+[INFO] 00.BootLoader/BootLoader.bin size = [512] and sector count = [1]
+[INFO] Copy protected mode kernel to image file
+[INFO] File size [2724] and fill [348] byte
+[INFO] 01.Kernel32/Kernel32.bin size = [2724] and sector count = [6]
+[INFO] Copy IA-32e mode kernel to image file
+[INFO] File size [17720] and fill [200] byte
+[INFO] 02.Kernel64/Kernel64.bin size = [17720] and sector count = [35]
+[INFO] Start to write kernel information
+[INFO] Total sector count except boot loader [41]
+[INFO] Total sector count of protected mode kernel [6]
+[INFO] Imeage file create complete
+
+================= All Build Complete =================
+
+
+================= Utility Build Start ================
+
+make -C 04.Utility
+make[1]: Entering directory '/cygdrive/z/OS/testOS/04.Utility'
+
+============= Build ImageMaker ===============
+
+make -C 00.ImageMaker
+make[2]: Entering directory '/cygdrive/z/OS/testOS/04.Utility/00.ImageMaker'
+gcc -o ImageMaker.exe ImageMaker.c
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/04.Utility/00.ImageMaker'
+
+=============== Build Complete ===============
+
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/04.Utility'
+
+=================== Utility Build Complete =============
+
+16:19:22 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+cygwin warning:
+  MS-DOS style path detected: Z:\OS\testOS\
+  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: Warning: File 'Dependency.dep' has modification time 0.015 s in the future
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: warning:  Clock skew detected.  Your build may be incomplete.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Queue.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+make[2]: Warning: File 'Dependency.dep' has modification time 0.013 s in the future
+make[2]: 'Kernel64.elf' is up to date.
+make[2]: warning:  Clock skew detected.  Your build may be incomplete.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel64.elf Kernel64.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+
+================= Build Complete ====================
+
+
+================= Disk Image Build Start =================
+
+./ImageMaker.exe 00.BootLoader/BootLoader.bin 01.Kernel32/Kernel32.bin 02.Kernel64/Kernel64.bin
+[INFO] Copy Boot loader to image file
+[INFO] File size is aligned 512Byte
+[INFO] 00.BootLoader/BootLoader.bin size = [512] and sector count = [1]
+[INFO] Copy protected mode kernel to image file
+[INFO] File size [2724] and fill [348] byte
+[INFO] 01.Kernel32/Kernel32.bin size = [2724] and sector count = [6]
+[INFO] Copy IA-32e mode kernel to image file
+[INFO] File size [17720] and fill [200] byte
+[INFO] 02.Kernel64/Kernel64.bin size = [17720] and sector count = [35]
+[INFO] Start to write kernel information
+[INFO] Total sector count except boot loader [41]
+[INFO] Total sector count of protected mode kernel [6]
+[INFO] Imeage file create complete
+
+================= All Build Complete =================
+
+
+================= Utility Build Start ================
+
+make -C 04.Utility
+make[1]: Entering directory '/cygdrive/z/OS/testOS/04.Utility'
+
+============= Build ImageMaker ===============
+
+make -C 00.ImageMaker
+make[2]: Entering directory '/cygdrive/z/OS/testOS/04.Utility/00.ImageMaker'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/04.Utility/00.ImageMaker'
+
+=============== Build Complete ===============
+
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/04.Utility'
+
+=================== Utility Build Complete =============
+
+16:21:54 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: Warning: File 'Dependency.dep' has modification time 0.013 s in the future
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -c ../Source/Main.c
+x86_64-pc-linux-ld.exe -melf_i386 -T ../elf_i386.x -nostdlib -e Main -Ttext 0x10200 -o Kernel32.elf Main.o Page.o ModeSwitch.o
+make[2]: warning:  Clock skew detected.  Your build may be incomplete.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Queue.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Main.c
+x86_64-pc-linux-ld.exe -melf_x86_64 -T ../elf_x86_64.x -nostdlib -e Main -Ttext 0x200000 -o Kernel64.elf EntryPoint.o Keyboard.o PIC.o Utility.o Console.o Descriptor.o InterruptHandler.o Queue.o ConsoleShell.o Main.o AssemblyUtility.o ISR.o
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel64.elf Kernel64.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+
+================= Build Complete ====================
+
+make: Warning: File '02.Kernel64/Kernel64.bin' has modification time 0.0089 s in the future
+
+================= Disk Image Build Start =================
+
+./ImageMaker.exe 00.BootLoader/BootLoader.bin 01.Kernel32/Kernel32.bin 02.Kernel64/Kernel64.bin
+[INFO] Copy Boot loader to image file
+[INFO] File size is aligned 512Byte
+[INFO] 00.BootLoader/BootLoader.bin size = [512] and sector count = [1]
+[INFO] Copy protected mode kernel to image file
+[INFO] File size [2724] and fill [348] byte
+[INFO] 01.Kernel32/Kernel32.bin size = [2724] and sector count = [6]
+[INFO] Copy IA-32e mode kernel to image file
+[INFO] File size [17720] and fill [200] byte
+[INFO] 02.Kernel64/Kernel64.bin size = [17720] and sector count = [35]
+[INFO] Start to write kernel information
+[INFO] Total sector count except boot loader [41]
+[INFO] Total sector count of protected mode kernel [6]
+[INFO] Imeage file create complete
+
+================= All Build Complete =================
+
+
+================= Utility Build Start ================
+
+make -C 04.Utility
+make[1]: Entering directory '/cygdrive/z/OS/testOS/04.Utility'
+
+============= Build ImageMaker ===============
+
+make -C 00.ImageMaker
+make[2]: Entering directory '/cygdrive/z/OS/testOS/04.Utility/00.ImageMaker'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/04.Utility/00.ImageMaker'
+
+=============== Build Complete ===============
+
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/04.Utility'
+
+=================== Utility Build Complete =============
+
+make: warning:  Clock skew detected.  Your build may be incomplete.
+16:32:33 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Queue.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Console.c
+../Source/Console.c: In function 'kConsolePrintString':
+../Source/Console.c:128:14: warning: passing argument 1 of 'kMemCpy' makes pointer from integer without a cast [enabled by default]
+              ( CONSOLE_HEIGHT - 1 ) * CONSOLE_WIDTH * sizeof( CHARACTER ) );
+              ^
+In file included from ../Source/Console.h:19:0,
+                 from ../Source/Console.c:10:
+../Source/Utility.h:17:5: note: expected 'void *' but argument is of type 'int'
+ int kMemCpy( void* pvDestination, const void* pvSource, int iSize);
+     ^
+../Source/Console.c:128:14: warning: passing argument 2 of 'kMemCpy' makes pointer from integer without a cast [enabled by default]
+              ( CONSOLE_HEIGHT - 1 ) * CONSOLE_WIDTH * sizeof( CHARACTER ) );
+              ^
+In file included from ../Source/Console.h:19:0,
+                 from ../Source/Console.c:10:
+../Source/Utility.h:17:5: note: expected 'const void *' but argument is of type 'long unsigned int'
+ int kMemCpy( void* pvDestination, const void* pvSource, int iSize);
+     ^
+x86_64-pc-linux-ld.exe -melf_x86_64 -T ../elf_x86_64.x -nostdlib -e Main -Ttext 0x200000 -o Kernel64.elf EntryPoint.o Keyboard.o PIC.o Utility.o Console.o Descriptor.o InterruptHandler.o Queue.o ConsoleShell.o Main.o AssemblyUtility.o ISR.o
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel64.elf Kernel64.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+
+================= Build Complete ====================
+
+
+================= Disk Image Build Start =================
+
+./ImageMaker.exe 00.BootLoader/BootLoader.bin 01.Kernel32/Kernel32.bin 02.Kernel64/Kernel64.bin
+[INFO] Copy Boot loader to image file
+[INFO] File size is aligned 512Byte
+[INFO] 00.BootLoader/BootLoader.bin size = [512] and sector count = [1]
+[INFO] Copy protected mode kernel to image file
+[INFO] File size [2640] and fill [432] byte
+[INFO] 01.Kernel32/Kernel32.bin size = [2640] and sector count = [6]
+[INFO] Copy IA-32e mode kernel to image file
+[INFO] File size [17720] and fill [200] byte
+[INFO] 02.Kernel64/Kernel64.bin size = [17720] and sector count = [35]
+[INFO] Start to write kernel information
+[INFO] Total sector count except boot loader [41]
+[INFO] Total sector count of protected mode kernel [6]
+[INFO] Imeage file create complete
+
+================= All Build Complete =================
+
+
+================= Utility Build Start ================
+
+make -C 04.Utility
+make[1]: Entering directory '/cygdrive/z/OS/testOS/04.Utility'
+
+============= Build ImageMaker ===============
+
+make -C 00.ImageMaker
+make[2]: Entering directory '/cygdrive/z/OS/testOS/04.Utility/00.ImageMaker'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/04.Utility/00.ImageMaker'
+
+=============== Build Complete ===============
+
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/04.Utility'
+
+=================== Utility Build Complete =============
+

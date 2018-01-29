@@ -4,11 +4,17 @@ Keyboard.o: ../Source/Keyboard.c ../Source/Types.h \
 PIC.o: ../Source/PIC.c ../Source/PIC.h ../Source/Types.h
 Utility.o: ../Source/Utility.c ../Source/Utility.h ../Source/Types.h \
  ../Source/AssemblyUtility.h
+Console.o: ../Source/Console.c ../Source/Console.h ../Source/Types.h \
+ ../Source/Utility.h ../Source/Keyboard.h
 Descriptor.o: ../Source/Descriptor.c ../Source/Descriptor.h \
  ../Source/Types.h ../Source/Utility.h ../Source/ISR.h
 InterruptHandler.o: ../Source/InterruptHandler.c \
  ../Source/InterruptHandler.h ../Source/Types.h ../Source/PIC.h \
- ../Source/Keyboard.h
+ ../Source/Keyboard.h ../Source/Console.h ../Source/Utility.h
 Queue.o: ../Source/Queue.c ../Source/Queue.h ../Source/types.h
+ConsoleShell.o: ../Source/ConsoleShell.c ../Source/ConsoleShell.h \
+ ../Source/Types.h ../Source/Console.h ../Source/Utility.h \
+ ../Source/Keyboard.h
 Main.o: ../Source/Main.c ../Source/Types.h ../Source/Keyboard.h \
- ../Source/Descriptor.h ../Source/PIC.h
+ ../Source/Descriptor.h ../Source/PIC.h ../Source/Console.h \
+ ../Source/Utility.h ../Source/ConsoleShell.h
