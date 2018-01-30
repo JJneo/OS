@@ -12,7 +12,7 @@
 #include "PIT.h"
 #include "RTC.h"
 #include "AssemblyUtility.h"
-#include "Task.h"
+
 
 // 커맨드 테이블 정의
 SHELLCOMMANDENTRY gs_vstCommandTable[] =

@@ -61,6 +61,14 @@ void kShowTotalRAMSize( const char* pcParameterBuffer );
 void kStringToDecimalHexTest( const char* pcParameterBuffer );
 void kShutdown( const char* pcParameterBuffer );
 
+//PIT,RTC
+void kSetTimer( const char* pcParameterBuffer );
+void kWaitUsingPIT( const char* pcParameterBuffer );
+void kReadTimeStampCounter( const char* pcParameterBuffer );
+void kMeasureProcessorSpeed( const char* pcParameterBuffer );
+void kShowDateAndTime( const char* pcParameterBuffer );
 
+// Task
+void kCreateTestTask( const char* pcParameterBuffer );
 
 #endif /* 02_KERNEL64_SOURCE_CONSOLESHELL_H_ */

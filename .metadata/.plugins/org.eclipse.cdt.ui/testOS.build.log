@@ -1,4 +1,4 @@
-16:32:33 **** Incremental Build of configuration Default for project testOS ****
+22:50:01 **** Incremental Build of configuration Default for project testOS ****
 make all 
 
 ================= Build Boot Loader =================
@@ -20,6 +20,12 @@ mkdir -p Temp
 make -C Temp -f ../makefile InternalDependency
 make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
 x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+cygwin warning:
+  MS-DOS style path detected: Z:\OS\testOS\
+  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
 make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
 === Dependancy Search Complete ===
 make -C Temp -f ../makefile Kernel32.elf
@@ -41,30 +47,18 @@ mkdir -p Temp
 === Make Dependancy File ===
 make -C Temp -f ../makefile InternalDependency
 make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
-x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Queue.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Task.c ../Source/RTC.c ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/Queue.c ../Source/PIT.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
 make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
 === Dependancy Search Complete ===
 make -C Temp -f ../makefile Kernel64.elf
 make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
-x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Console.c
-../Source/Console.c: In function 'kConsolePrintString':
-../Source/Console.c:128:14: warning: passing argument 1 of 'kMemCpy' makes pointer from integer without a cast [enabled by default]
-              ( CONSOLE_HEIGHT - 1 ) * CONSOLE_WIDTH * sizeof( CHARACTER ) );
-              ^
-In file included from ../Source/Console.h:19:0,
-                 from ../Source/Console.c:10:
-../Source/Utility.h:17:5: note: expected 'void *' but argument is of type 'int'
- int kMemCpy( void* pvDestination, const void* pvSource, int iSize);
-     ^
-../Source/Console.c:128:14: warning: passing argument 2 of 'kMemCpy' makes pointer from integer without a cast [enabled by default]
-              ( CONSOLE_HEIGHT - 1 ) * CONSOLE_WIDTH * sizeof( CHARACTER ) );
-              ^
-In file included from ../Source/Console.h:19:0,
-                 from ../Source/Console.c:10:
-../Source/Utility.h:17:5: note: expected 'const void *' but argument is of type 'long unsigned int'
- int kMemCpy( void* pvDestination, const void* pvSource, int iSize);
-     ^
-x86_64-pc-linux-ld.exe -melf_x86_64 -T ../elf_x86_64.x -nostdlib -e Main -Ttext 0x200000 -o Kernel64.elf EntryPoint.o Keyboard.o PIC.o Utility.o Console.o Descriptor.o InterruptHandler.o Queue.o ConsoleShell.o Main.o AssemblyUtility.o ISR.o
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Task.c
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Keyboard.c
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Utility.c
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/ConsoleShell.c
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Main.c
+nasm -f elf64 -o AssemblyUtility.o ../Source/AssemblyUtility.asm
+x86_64-pc-linux-ld.exe -melf_x86_64 -T ../elf_x86_64.x -nostdlib -e Main -Ttext 0x200000 -o Kernel64.elf EntryPoint.o Task.o RTC.o Keyboard.o PIC.o Utility.o Console.o Descriptor.o InterruptHandler.o Queue.o PIT.o ConsoleShell.o Main.o AssemblyUtility.o ISR.o
 make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
 x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel64.elf Kernel64.bin
 make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
@@ -82,10 +76,10 @@ make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
 [INFO] File size [2640] and fill [432] byte
 [INFO] 01.Kernel32/Kernel32.bin size = [2640] and sector count = [6]
 [INFO] Copy IA-32e mode kernel to image file
-[INFO] File size [17720] and fill [200] byte
-[INFO] 02.Kernel64/Kernel64.bin size = [17720] and sector count = [35]
+[INFO] File size [21000] and fill [504] byte
+[INFO] 02.Kernel64/Kernel64.bin size = [21000] and sector count = [42]
 [INFO] Start to write kernel information
-[INFO] Total sector count except boot loader [41]
+[INFO] Total sector count except boot loader [48]
 [INFO] Total sector count of protected mode kernel [6]
 [INFO] Imeage file create complete
 
@@ -111,5 +105,5 @@ make[1]: Leaving directory '/cygdrive/z/OS/testOS/04.Utility'
 =================== Utility Build Complete =============
 
 
-16:32:36 Build Finished (took 3s.216ms)
+22:50:05 Build Finished (took 3s.435ms)
 

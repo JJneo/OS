@@ -7,6 +7,7 @@
 #define __ASSEMBLYUTILITY_H__
 
 #include "Types.h"
+#include "Task.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 //
@@ -22,5 +23,12 @@ void kLoadIDTR( QWORD qwIDTRAddress );
 void kEnableInterrupt( void );
 void kDisableInterrupt( void );
 QWORD kReadRFLAGS( void );
+
+//PIT 관련
+QWORD kReadTSC(void);
+
+// context switching 관련
+void kSwitchContext( CONTEXT* pstCurrentContext, CONTEXT* pstNextContext );
+
 
 #endif /*__ASSEMBLYUTILITY_H__*/
