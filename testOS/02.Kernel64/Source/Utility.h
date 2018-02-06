@@ -31,6 +31,10 @@ int kDecimalToString( long lValue, char* pcBuffer );
 int kSPrintf( char* pcBuffer, const char* pcFormatString, ... );
 int kVSPrintf( char* pcBuffer, const char* pcFormatString, va_list ap );
 
+// 함수
+QWORD kGetTickCount(void);
 
+// 기타
+extern volatile QWORD g_qwTickCount;
 
 #endif /* 02_KERNEL64_SOURCE_UTILITY_H_ */

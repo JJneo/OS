@@ -13,6 +13,10 @@
 #include "Console.h"
 #include "ConsoleShell.h"
 
+#include "Task.h"
+#include "PIT.h"
+
+
 
 // main 함수
 void Main( void )
@@ -51,6 +55,17 @@ void Main( void )
 	kCheckTotalRAMSize();
 	kSetCursor(48, iCursorY++);
 	kPrintf("PASS], Size=%dMB\n",kGetTotalRAMSize());
+
+
+
+
+	kPrintf("TCB Pool And Scheduler Initialize....          [PASS]\n");
+	iCursorY++;
+	kInitializeScheduler();
+	// 1ms당 한번씩 인터럽트가 발생하도록 설정
+	kInitializePIT( MSTOCOUNT(1), 1 );
+
+
 
 	kPrintf("Keyboard Activate And Queue Initialize....     [    ]\n");
 
