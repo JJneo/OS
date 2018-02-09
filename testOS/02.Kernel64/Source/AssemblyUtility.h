@@ -29,6 +29,7 @@ QWORD kReadTSC(void);
 
 // context switching ฐüทร
 void kSwitchContext( CONTEXT* pstCurrentContext, CONTEXT* pstNextContext );
+void kHlt( void );
 
 
 #endif /*__ASSEMBLYUTILITY_H__*/

@@ -9237,3 +9237,522 @@ make[1]: Leaving directory '/cygdrive/z/OS/testOS/04.Utility'
 
 =================== Utility Build Complete =============
 
+23:00:29 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+cygwin warning:
+  MS-DOS style path detected: Z:\OS\testOS\
+  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Task.c ../Source/RTC.c ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/List.c ../Source/Queue.c ../Source/PIT.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Task.c
+../Source/Task.c: In function 'kAddTaskToReadyList':
+../Source/Task.c:255:32: error: invalid type argument of '->' (have 'SCHEDULER')
+  kAddListToTail( gs_stScheduler->vstReadyList[bPriority],pstTask );
+                                ^
+../Source/Task.c: In function 'kRemoveTaskFromReadyList':
+../Source/Task.c:273:35: error: invalid type argument of '->' (have 'TCBPOOLMANAGER')
+  pstTarget = &(gs_stTCBPoolManager->pstStartAddress[ GETTCBOFFSET(qwTaskID) ] );
+                                   ^
+../Source/Task.c:281:42: error: invalid type argument of '->' (have 'SCHEDULER')
+  pstTarget = kRemoveList(&(gs_stScheduler->vstReadyList[bPriority]), qwTaskID);
+                                          ^
+../Source/Task.c: In function 'kChangePriority':
+../Source/Task.c:298:28: error: invalid type argument of '->' (have 'SCHEDULER')
+  pstTarget = gs_stScheduler->pstRunningTask;
+                            ^
+../Source/Task.c: In function 'kSchedule':
+../Source/Task.c:363:17: error: invalid type argument of '->' (have 'SCHEDULER')
+   gs_stScheduler->qwSpendProcessorTimeInIdleTask += TASK_PROCESSORTIME - gs_stScheduler->iProcessorTime;
+                 ^
+../Source/Task.c:363:88: error: invalid type argument of '->' (have 'SCHEDULER')
+   gs_stScheduler->qwSpendProcessorTimeInIdleTask += TASK_PROCESSORTIME - gs_stScheduler->iProcessorTime;
+                                                                                        ^
+../Source/Task.c:372:35: error: invalid type argument of '->' (have 'SCHEDULER')
+   kAddListToTail( &(gs_stScheduler->stWaitList), pstRunningTask );
+                                   ^
+../Source/Task.c: In function 'kScheduleInInterrupt':
+../Source/Task.c:421:17: error: invalid type argument of '->' (have 'SCHEDULER')
+   gs_stScheduler->qwSpendProcessorTimeInIdleTask += TASK_PROCESSORTIME;
+                 ^
+../Source/Task.c:427:35: error: invalid type argument of '->' (have 'SCHEDULER')
+   kAddListToTail( &(gs_stScheduler->stWaitList), pstRunningTask );
+                                   ^
+../Source/Task.c: In function 'kEndTask':
+../Source/Task.c:473:28: error: invalid type argument of '->' (have 'SCHEDULER')
+  pstTarget = gs_stScheduler->pstRunningTask;
+                            ^
+../Source/Task.c:505:34: error: invalid type argument of '->' (have 'SCHEDULER')
+   kAddListToTail(&(gs_stScheduler->stWaitList), pstTarget );
+                                  ^
+../Source/Task.c: In function 'kGetReadyTaskCount':
+../Source/Task.c:531:46: error: invalid type argument of '->' (have 'SCHEDULER')
+   iTotalCount += kGetListCount(gs_stScheduler->vstReadyList[i] );
+                                              ^
+../Source/Task.c: In function 'kGetTaskCount':
+../Source/Task.c:546:48: error: invalid type argument of '->' (have 'SCHEDULER')
+  iTotalCount += kGetListCount( &(gs_stScheduler->stWaitList) )+1;
+                                                ^
+../Source/Task.c: In function 'kGetTCBInTCBPool':
+../Source/Task.c:557:30: error: invalid type argument of '->' (have 'TCBPOOLMANAGER')
+  return &(gs_stTCBPoolManager->pstStartAddress[iOffset]);
+                              ^
+../Source/Task.c: In function 'kGetProcessorLoad':
+../Source/Task.c:578:23: error: invalid type argument of '->' (have 'SCHEDULER')
+  return gs_stScheduler->qwProcessorLoad;
+                       ^
+../Source/Task.c: In function 'kIdleTask':
+../Source/Task.c:621:38: error: invalid type argument of '->' (have 'SCHEDULER')
+   if( kGetListCount( &(gs_stScheduler->stWaitList)) >= 0 )
+                                      ^
+../Source/Task.c:625:54: error: invalid type argument of '->' (have 'SCHEDULER')
+     pstTask = kRemoveListFromHeader( &(gs_stScheduler->stWaitList) );
+                                                      ^
+../makefile:69: recipe for target 'Task.o' failed
+make[2]: *** [Task.o] Error 1
+make[1]: *** [ExecuteInternalBuild] Error 2
+make: *** [Kernel64] Error 2
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+makefile:40: recipe for target 'ExecuteInternalBuild' failed
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+makefile:28: recipe for target 'Kernel64' failed
+23:07:21 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+cygwin warning:
+  MS-DOS style path detected: Z:\OS\testOS\
+  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Task.c ../Source/RTC.c ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/List.c ../Source/Queue.c ../Source/PIT.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Task.c
+../Source/Task.c: In function 'kSchedule':
+../Source/Task.c:363:17: error: invalid type argument of '->' (have 'SCHEDULER')
+   gs_stScheduler->qwSpendProcessorTimeInIdleTask += TASK_PROCESSORTIME - gs_stScheduler->iProcessorTime;
+                 ^
+../Source/Task.c:363:88: error: invalid type argument of '->' (have 'SCHEDULER')
+   gs_stScheduler->qwSpendProcessorTimeInIdleTask += TASK_PROCESSORTIME - gs_stScheduler->iProcessorTime;
+                                                                                        ^
+../Source/Task.c:372:35: error: invalid type argument of '->' (have 'SCHEDULER')
+   kAddListToTail( &(gs_stScheduler->stWaitList), pstRunningTask );
+                                   ^
+../Source/Task.c: In function 'kScheduleInInterrupt':
+../Source/Task.c:421:17: error: invalid type argument of '->' (have 'SCHEDULER')
+   gs_stScheduler->qwSpendProcessorTimeInIdleTask += TASK_PROCESSORTIME;
+                 ^
+../Source/Task.c:427:35: error: invalid type argument of '->' (have 'SCHEDULER')
+   kAddListToTail( &(gs_stScheduler->stWaitList), pstRunningTask );
+                                   ^
+../Source/Task.c: In function 'kEndTask':
+../Source/Task.c:473:28: error: invalid type argument of '->' (have 'SCHEDULER')
+  pstTarget = gs_stScheduler->pstRunningTask;
+                            ^
+../Source/Task.c:505:34: error: invalid type argument of '->' (have 'SCHEDULER')
+   kAddListToTail(&(gs_stScheduler->stWaitList), pstTarget );
+                                  ^
+../Source/Task.c: In function 'kGetReadyTaskCount':
+../Source/Task.c:531:46: error: invalid type argument of '->' (have 'SCHEDULER')
+   iTotalCount += kGetListCount(gs_stScheduler->vstReadyList[i] );
+                                              ^
+../Source/Task.c: In function 'kGetTaskCount':
+../Source/Task.c:546:48: error: invalid type argument of '->' (have 'SCHEDULER')
+  iTotalCount += kGetListCount( &(gs_stScheduler->stWaitList) )+1;
+                                                ^
+../Source/Task.c: In function 'kGetTCBInTCBPool':
+../Source/Task.c:557:30: error: invalid type argument of '->' (have 'TCBPOOLMANAGER')
+  return &(gs_stTCBPoolManager->pstStartAddress[iOffset]);
+                              ^
+../Source/Task.c: In function 'kGetProcessorLoad':
+../Source/Task.c:578:23: error: invalid type argument of '->' (have 'SCHEDULER')
+  return gs_stScheduler->qwProcessorLoad;
+                       ^
+../Source/Task.c: In function 'kIdleTask':
+../Source/Task.c:621:38: error: invalid type argument of '->' (have 'SCHEDULER')
+   if( kGetListCount( &(gs_stScheduler->stWaitList)) >= 0 )
+                                      ^
+../Source/Task.c:625:54: error: invalid type argument of '->' (have 'SCHEDULER')
+     pstTask = kRemoveListFromHeader( &(gs_stScheduler->stWaitList) );
+                                                      ^
+../makefile:69: recipe for target 'Task.o' failed
+make[2]: *** [Task.o] Error 1
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+makefile:40: recipe for target 'ExecuteInternalBuild' failed
+make[1]: *** [ExecuteInternalBuild] Error 2
+make: *** [Kernel64] Error 2
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+makefile:28: recipe for target 'Kernel64' failed
+23:09:08 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+cygwin warning:
+  MS-DOS style path detected: Z:\OS\testOS\
+  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Task.c ../Source/RTC.c ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/List.c ../Source/Queue.c ../Source/PIT.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Task.c
+../Source/Task.c: In function 'kSchedule':
+../Source/Task.c:363:17: error: invalid type argument of '->' (have 'SCHEDULER')
+   gs_stScheduler->qwSpendProcessorTimeInIdleTask += TASK_PROCESSORTIME - gs_stScheduler->iProcessorTime;
+                 ^
+../Source/Task.c:363:88: error: invalid type argument of '->' (have 'SCHEDULER')
+   gs_stScheduler->qwSpendProcessorTimeInIdleTask += TASK_PROCESSORTIME - gs_stScheduler->iProcessorTime;
+                                                                                        ^
+../Source/Task.c:372:35: error: invalid type argument of '->' (have 'SCHEDULER')
+   kAddListToTail( &(gs_stScheduler->stWaitList), pstRunningTask );
+                                   ^
+../Source/Task.c: In function 'kScheduleInInterrupt':
+../Source/Task.c:421:17: error: invalid type argument of '->' (have 'SCHEDULER')
+   gs_stScheduler->qwSpendProcessorTimeInIdleTask += TASK_PROCESSORTIME;
+                 ^
+../Source/Task.c:427:35: error: invalid type argument of '->' (have 'SCHEDULER')
+   kAddListToTail( &(gs_stScheduler->stWaitList), pstRunningTask );
+                                   ^
+../Source/Task.c: In function 'kEndTask':
+../Source/Task.c:473:28: error: invalid type argument of '->' (have 'SCHEDULER')
+  pstTarget = gs_stScheduler->pstRunningTask;
+                            ^
+../Source/Task.c:505:34: error: invalid type argument of '->' (have 'SCHEDULER')
+   kAddListToTail(&(gs_stScheduler->stWaitList), pstTarget );
+                                  ^
+../Source/Task.c: In function 'kGetReadyTaskCount':
+../Source/Task.c:531:46: error: invalid type argument of '->' (have 'SCHEDULER')
+   iTotalCount += kGetListCount(gs_stScheduler->vstReadyList[i] );
+                                              ^
+../Source/Task.c: In function 'kGetTaskCount':
+../Source/Task.c:546:48: error: invalid type argument of '->' (have 'SCHEDULER')
+  iTotalCount += kGetListCount( &(gs_stScheduler->stWaitList) )+1;
+                                                ^
+../Source/Task.c: In function 'kGetTCBInTCBPool':
+../Source/Task.c:557:30: error: invalid type argument of '->' (have 'TCBPOOLMANAGER')
+  return &(gs_stTCBPoolManager->pstStartAddress[iOffset]);
+                              ^
+../Source/Task.c: In function 'kGetProcessorLoad':
+../Source/Task.c:578:23: error: invalid type argument of '->' (have 'SCHEDULER')
+  return gs_stScheduler->qwProcessorLoad;
+                       ^
+../Source/Task.c: In function 'kIdleTask':
+../Source/Task.c:621:38: error: invalid type argument of '->' (have 'SCHEDULER')
+   if( kGetListCount( &(gs_stScheduler->stWaitList)) >= 0 )
+                                      ^
+../Source/Task.c:625:54: error: invalid type argument of '->' (have 'SCHEDULER')
+     pstTask = kRemoveListFromHeader( &(gs_stScheduler->stWaitList) );
+                                                      ^
+../makefile:69: recipe for target 'Task.o' failed
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+make[2]: *** [Task.o] Error 1
+makefile:40: recipe for target 'ExecuteInternalBuild' failed
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+makefile:28: recipe for target 'Kernel64' failed
+make[1]: *** [ExecuteInternalBuild] Error 2
+make: *** [Kernel64] Error 2
+23:10:22 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+cygwin warning:
+  MS-DOS style path detected: Z:\OS\testOS\
+  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Task.c ../Source/RTC.c ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/List.c ../Source/Queue.c ../Source/PIT.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Task.c
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Keyboard.c
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Utility.c
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/InterruptHandler.c
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/List.c
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/ConsoleShell.c
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Main.c
+nasm -f elf64 -o AssemblyUtility.o ../Source/AssemblyUtility.asm
+x86_64-pc-linux-ld.exe -melf_x86_64 -T ../elf_x86_64.x -nostdlib -e Main -Ttext 0x200000 -o Kernel64.elf EntryPoint.o Task.o RTC.o Keyboard.o PIC.o Utility.o Console.o Descriptor.o InterruptHandler.o List.o Queue.o PIT.o ConsoleShell.o Main.o AssemblyUtility.o ISR.o
+ConsoleShell.o: In function `kShowTaskList':
+ConsoleShell.c:(.text+0xefa): undefined reference to `kGetch'
+../makefile:81: recipe for target 'Kernel64.elf' failed
+make[2]: *** [Kernel64.elf] Error 1
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+makefile:40: recipe for target 'ExecuteInternalBuild' failed
+make[1]: *** [ExecuteInternalBuild] Error 2
+make: *** [Kernel64] Error 2
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+makefile:28: recipe for target 'Kernel64' failed
+23:12:12 **** Incremental Build of configuration Default for project testOS ****
+make all 
+
+================= Build Boot Loader =================
+
+make -C 00.BootLoader
+make[1]: Entering directory '/cygdrive/z/OS/testOS/00.BootLoader'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/00.BootLoader'
+
+================= Build Complete =================
+
+
+================= Build 32bit Kernel ===================
+
+make -C 01.Kernel32
+make[1]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+cygwin warning:
+  MS-DOS style path detected: Z:\OS\testOS\
+  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel32.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+make[2]: 'Kernel32.elf' is up to date.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel32.elf Temp/Kernel32.elf.bin
+cat Temp/EntryPoint.bin Temp/Kernel32.elf.bin > Kernel32.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32'
+
+================= build Complete ====================
+
+
+================= Build 64bit Kernel ===================
+
+make -C 02.Kernel64
+make[1]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64'
+mkdir -p Temp
+=== Make Dependancy File ===
+make -C Temp -f ../makefile InternalDependency
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -MM ../Source/Task.c ../Source/RTC.c ../Source/Keyboard.c ../Source/PIC.c ../Source/Utility.c ../Source/Console.c ../Source/Descriptor.c ../Source/InterruptHandler.c ../Source/List.c ../Source/Queue.c ../Source/PIT.c ../Source/ConsoleShell.c ../Source/Main.c > Dependency.dep
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+=== Dependancy Search Complete ===
+make -C Temp -f ../makefile Kernel64.elf
+make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/ConsoleShell.c
+x86_64-pc-linux-ld.exe -melf_x86_64 -T ../elf_x86_64.x -nostdlib -e Main -Ttext 0x200000 -o Kernel64.elf EntryPoint.o Task.o RTC.o Keyboard.o PIC.o Utility.o Console.o Descriptor.o InterruptHandler.o List.o Queue.o PIT.o ConsoleShell.o Main.o AssemblyUtility.o ISR.o
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
+x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel64.elf Kernel64.bin
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
+
+================= Build Complete ====================
+
+
+================= Disk Image Build Start =================
+
+./ImageMaker.exe 00.BootLoader/BootLoader.bin 01.Kernel32/Kernel32.bin 02.Kernel64/Kernel64.bin
+[INFO] Copy Boot loader to image file
+[INFO] File size is aligned 512Byte
+[INFO] 00.BootLoader/BootLoader.bin size = [512] and sector count = [1]
+[INFO] Copy protected mode kernel to image file
+[INFO] File size [2640] and fill [432] byte
+[INFO] 01.Kernel32/Kernel32.bin size = [2640] and sector count = [6]
+[INFO] Copy IA-32e mode kernel to image file
+[INFO] File size [27240] and fill [408] byte
+[INFO] 02.Kernel64/Kernel64.bin size = [27240] and sector count = [54]
+[INFO] Start to write kernel information
+[INFO] Total sector count except boot loader [60]
+[INFO] Total sector count of protected mode kernel [6]
+[INFO] Imeage file create complete
+
+================= All Build Complete =================
+
+
+================= Utility Build Start ================
+
+make -C 04.Utility
+make[1]: Entering directory '/cygdrive/z/OS/testOS/04.Utility'
+
+============= Build ImageMaker ===============
+
+make -C 00.ImageMaker
+make[2]: Entering directory '/cygdrive/z/OS/testOS/04.Utility/00.ImageMaker'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/cygdrive/z/OS/testOS/04.Utility/00.ImageMaker'
+
+=============== Build Complete ===============
+
+make[1]: Leaving directory '/cygdrive/z/OS/testOS/04.Utility'
+
+=================== Utility Build Complete =============
+

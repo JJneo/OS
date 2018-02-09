@@ -97,6 +97,7 @@ void Main( void )
 
 
 	// º–¿ª Ω√¿€
+	kCreateTask(TASK_FLAGS_LOWEST|TASK_FLAGS_IDLE,  (QWORD) kIdleTask);
 	kStartConsoleShell();
 
 }

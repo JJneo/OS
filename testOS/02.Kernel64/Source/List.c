@@ -127,7 +127,7 @@ void* kRemoveListFromHeader( LIST* pstList )
 }
 
 // 리스트의 마지막 데이터를 제거하여 반환
-void* kRemoveListFromLTail( LIST* pstList )
+void* kRemoveListFromTail( LIST* pstList )
 {
 	LISTNODE* pstNode;
 	if( pstList->iItemCount == 0 )

@@ -1,4 +1,4 @@
-14:56:36 **** Incremental Build of configuration Default for project testOS ****
+23:12:12 **** Incremental Build of configuration Default for project testOS ****
 make all 
 
 ================= Build Boot Loader =================
@@ -20,6 +20,12 @@ mkdir -p Temp
 make -C Temp -f ../makefile InternalDependency
 make[2]: Entering directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
 x86_64-pc-linux-gcc.exe -c -m32 -ffreestanding -MM ../Source/Page.c ../Source/Main.c > Dependency.dep
+cygwin warning:
+  MS-DOS style path detected: Z:\OS\testOS\
+  Preferred POSIX equivalent is: /cygdrive/z/OS/testOS/
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
 make[2]: Leaving directory '/cygdrive/z/OS/testOS/01.Kernel32/Temp'
 === Dependancy Search Complete ===
 make -C Temp -f ../makefile Kernel32.elf
@@ -46,12 +52,7 @@ make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
 === Dependancy Search Complete ===
 make -C Temp -f ../makefile Kernel64.elf
 make[2]: Entering directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
-x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Task.c
-x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Keyboard.c
-x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Utility.c
-x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/InterruptHandler.c
 x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/ConsoleShell.c
-x86_64-pc-linux-gcc.exe -c -m64 -ffreestanding -c ../Source/Main.c
 x86_64-pc-linux-ld.exe -melf_x86_64 -T ../elf_x86_64.x -nostdlib -e Main -Ttext 0x200000 -o Kernel64.elf EntryPoint.o Task.o RTC.o Keyboard.o PIC.o Utility.o Console.o Descriptor.o InterruptHandler.o List.o Queue.o PIT.o ConsoleShell.o Main.o AssemblyUtility.o ISR.o
 make[2]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64/Temp'
 x86_64-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary Temp/Kernel64.elf Kernel64.bin
@@ -70,10 +71,10 @@ make[1]: Leaving directory '/cygdrive/z/OS/testOS/02.Kernel64'
 [INFO] File size [2640] and fill [432] byte
 [INFO] 01.Kernel32/Kernel32.bin size = [2640] and sector count = [6]
 [INFO] Copy IA-32e mode kernel to image file
-[INFO] File size [24072] and fill [504] byte
-[INFO] 02.Kernel64/Kernel64.bin size = [24072] and sector count = [48]
+[INFO] File size [27240] and fill [408] byte
+[INFO] 02.Kernel64/Kernel64.bin size = [27240] and sector count = [54]
 [INFO] Start to write kernel information
-[INFO] Total sector count except boot loader [54]
+[INFO] Total sector count except boot loader [60]
 [INFO] Total sector count of protected mode kernel [6]
 [INFO] Imeage file create complete
 
@@ -99,5 +100,5 @@ make[1]: Leaving directory '/cygdrive/z/OS/testOS/04.Utility'
 =================== Utility Build Complete =============
 
 
-14:56:39 Build Finished (took 2s.674ms)
+23:12:14 Build Finished (took 2s.313ms)
 

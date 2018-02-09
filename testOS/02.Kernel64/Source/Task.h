@@ -61,6 +61,31 @@
 
 
 
+// 준비 리스트의 수
+#define TASK_MAXREADYLISTCOUNT  5
+
+// 태스크의 우선 순위
+#define TASK_FLAGS_HIGHEST            0
+#define TASK_FLAGS_HIGH               1
+#define TASK_FLAGS_MEDIUM             2
+#define TASK_FLAGS_LOW                3
+#define TASK_FLAGS_LOWEST             4
+#define TASK_FLAGS_WAIT               0xFF
+
+// 태스크의 플래그
+#define TASK_FLAGS_ENDTASK            0x8000000000000000
+#define TASK_FLAGS_IDLE               0x0800000000000000
+
+// 함수 매크로
+#define GETPRIORITY( x )        ( ( x ) & 0xFF )
+#define SETPRIORITY( x, priority )  ( ( x ) = ( ( x ) & 0xFFFFFFFFFFFFFF00 ) | \
+        ( priority ) )
+#define GETTCBOFFSET( x )       ( ( x ) & 0xFFFFFFFF )
+
+
+
+
+
 ////////////////////////////////////////////////////////////////////////////////
 //
 // 구조체
@@ -113,8 +138,22 @@ typedef struct kSchedulerStruct
 	// 현재 수행 중인 태스크가 사용할 수 잇는 프로세스 시간
 	int iProcessorTime;
 
-	// 실행할 태스크가 준비 중인 리스트
-	LIST stReadyList;
+	// 실행할 태스크가 준비 중인 리스트, 태스크의 우선순위에 따라 구분
+	LIST vstReadyList[TASK_MAXREADYLISTCOUNT];
+
+	// 종료할 태스크가 대기중인 리스트
+	LIST stWaitList;
+
+	// 각 우선순위별로 태스크를 실행한 횟수를 저장하는 자료구조
+	int viExecuteCount[TASK_MAXREADYLISTCOUNT];
+
+	// 프로세서 부하를 계산하기 위한 자료구조
+	QWORD qwProcessorLoad;
+
+	// 유휴 태스크( Idle Task )에서 사용한 프로세서 시간
+	QWORD qwSpendProcessorTimeInIdleTask;
+
+
 }SCHEDULER;
 
 
@@ -139,18 +178,33 @@ TCB* kCreateTask( QWORD qwFlags, QWORD qwEntryPointAddress );
 void kSetUpTask( TCB* pstTCB, QWORD qwFlags, QWORD qwEntryPointAddress,
         void* pvStackAddress, QWORD qwStackSize );
 
-//=============================================================================//
-// 스케줄러 관련
-//=============================================================================//
+//==============================================================================
+//  스케줄러 관련
+//==============================================================================
 void kInitializeScheduler( void );
 void kSetRunningTask( TCB* pstTask );
 TCB* kGetRunningTask( void );
 TCB* kGetNextTaskToRun( void );
-void kAddTaskToReadyList( TCB* pstTask );
+BOOL kAddTaskToReadyList( TCB* pstTask );
 void kSchedule( void );
 BOOL kScheduleInInterrupt( void );
 void kDecreaseProcessorTime( void );
 BOOL kIsProcessorTimeExpired( void );
 
+TCB* kRemoveTaskFromReadyList( QWORD qwTaskID );
+BOOL kChangePriority( QWORD qwID, BYTE bPriority );
+BOOL kEndTask( QWORD qwTaskID );
+void kExitTask( void );
+int kGetReadyTaskCount( void );
+int kGetTaskCount( void );
+TCB* kGetTCBInTCBPool( int iOffset );
+BOOL kIsTaskExist( QWORD qwID );
+QWORD kGetProcessorLoad( void );
+
+//==============================================================================
+//  유휴 태스크 관련
+//==============================================================================
+void kIdleTask( void );
+void kHaltProcessorByLoad( void );
 
 #endif /* 02_KERNEL64_SOURCE_TASK_H_ */

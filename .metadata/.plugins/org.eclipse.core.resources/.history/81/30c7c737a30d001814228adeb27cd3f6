@@ -664,7 +664,7 @@ static void kShowTaskList( const char* pcParameterBuffer )
 			if( (iCount != 0 ) && ( (iCount % 10) == 0 ) )
 			{
 				kPrintf("Press any key to Continue... ('q' is exit) : ");
-				if( kGetCh() == 'q' )
+				if( kGetch() == 'q' )
 				{
 					kPrintf("\n");
 					break;
@@ -715,7 +715,7 @@ static void kKillTask( const char* pcParameterBuffer )
 // 프로세서의 사용율을 표시
 static void kCPULoad( const char* pcParameterBuffer )
 {
-	kPrintf("Processor Load : %d%%]\n", kGetProcessorLoad());
+	kPrintf("Processor Load : %d%%]n", kGetProcessorLoad());
 }
 
 
