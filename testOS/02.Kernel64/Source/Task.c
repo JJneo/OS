@@ -18,7 +18,7 @@ static TCBPOOLMANAGER gs_stTCBPoolManager;
 //=============================================================================//
 
 // 태스크 풀 초기화
-void kInitializeTCBPool(void)
+static void kInitializeTCBPool(void)
 {
 	int i;
 
@@ -40,7 +40,7 @@ void kInitializeTCBPool(void)
 }
 
 // TCB를 할당 받음
-TCB* kAllocateTCB( void )
+static TCB* kAllocateTCB( void )
 {
 	TCB* pstEmptyTCB;
 	int i;
@@ -71,7 +71,7 @@ TCB* kAllocateTCB( void )
 }
 
 // TCB 해제함
-void kFreeTCB( QWORD qwID )
+static void kFreeTCB( QWORD qwID )
 {
 	int i;
 
@@ -92,25 +92,43 @@ TCB* kCreateTask( QWORD qwFlags, QWORD qwEntryPointAddress )
 {
 	TCB* pstTask;
 	void* pvStackAddress;
+	BOOL bPreviousFlag;
+
+	// 임계영역 시작.
+	bPreviousFlag = kLockForSystemData();
 
 	pstTask = kAllocateTCB();
 	if( pstTask == NULL )
 	{
+		// 임계영역 끝
+		kUnlockForSystemData( bPreviousFlag );
 		return NULL;
 	}
+
+	// 임계영역 끝.
+	kUnlockForSystemData( bPreviousFlag );
+
 
 	// 태스크 ID로 스택 어드레스 계산, 하위 32비트가 스택 풀의 오프셋 역할 수행
 	pvStackAddress = (void*) (TASK_STACKPOOLADDRESS + (TASK_STACKSIZE * ( GETTCBOFFSET(pstTask->stNode.qwID) ) ) );
 
 	// TCB 설정한 후 준비 리스트에 삽입하여 스케줄링 될 수 있도록 함.
 	kSetUpTask(pstTask, qwFlags, qwEntryPointAddress, pvStackAddress, TASK_STACKSIZE);
+
+	// 임계영역 시작
+	kLockForSystemData();
+
 	kAddTaskToReadyList( pstTask );
+	// 임계 영역 끝
+	kUnlockForSystemData( bPreviousFlag );
+
+
 	return pstTask;
 }
 
 
 // 파라미터를 이용해서 TCB를 설정
-void kSetUpTask( TCB* pstTCB, QWORD qwFlags, QWORD qwEntryPointAddress, void* pvStackAddress, QWORD qwStackSize)
+static void kSetUpTask( TCB* pstTCB, QWORD qwFlags, QWORD qwEntryPointAddress, void* pvStackAddress, QWORD qwStackSize)
 {
 	//콘택스트 초기화
 	kMemSet( pstTCB->stContext.vqRegister, 0, sizeof( pstTCB->stContext.vqRegister) );
@@ -181,17 +199,37 @@ void kInitializeScheduler( void )
 // 현재 수행 중인 태스크를 설정
 void kSetRunningTask( TCB* pstTask )
 {
+	// 스케줄러라는 태스크들이 공용으로 사용하는 자료구조에 접근하기 때문에 동기화 필요.
+	BOOL bPreviousFlag;
+
+	// 임계영역 시작
+	bPreviousFlag = kLockForSystemData();
+
 	gs_stScheduler.pstRunningTask = pstTask;
+
+	// 임계영역 끝.
+	kUnlockForSystemData(bPreviousFlag);
 }
 
 // 현재 수행 중인 태스크를 반환
 TCB* kGetRunningTask( void )
 {
-	return gs_stScheduler.pstRunningTask;
+	BOOL bPreviousFlag;
+	TCB* pstRunningTask;
+
+	// 임계영역 설정
+	bPreviousFlag = kLockForSystemData();
+
+	pstRunningTask = gs_stScheduler.pstRunningTask;
+
+	// 임계영역 해제
+	kUnlockForSystemData(bPreviousFlag);
+
+	return pstRunningTask;
 }
 
 // 태스크 리스트에서 다음으로 실행할 태스크를 얻음
-TCB* kGetNextTaskToRun( void )
+static TCB* kGetNextTaskToRun( void )
 {
 	// 다음에 수행할 태스크를 저장하는 자료구조.
 	TCB* pstTarget = NULL;
@@ -243,7 +281,7 @@ TCB* kGetNextTaskToRun( void )
 
 
 // 태스크를 스캐줄러의 준비 리스트에 삽입
-BOOL kAddTaskToReadyList( TCB* pstTask )
+static BOOL kAddTaskToReadyList( TCB* pstTask )
 {
 	BYTE bPriority;
 
@@ -259,7 +297,7 @@ BOOL kAddTaskToReadyList( TCB* pstTask )
 
 
 // 준비 큐에서 태스크를 제거
-TCB* kRemoveTaskFromReadyList( QWORD qwTaskID )
+static TCB* kRemoveTaskFromReadyList( QWORD qwTaskID )
 {
 	TCB* pstTarget;
 	BYTE bPriority;
@@ -287,6 +325,7 @@ TCB* kRemoveTaskFromReadyList( QWORD qwTaskID )
 BOOL kChangePriority( QWORD qwTaskID, BYTE bPriority)
 {
 	TCB* pstTarget;
+	BOOL bPreviousFlag;
 
 	if( bPriority > TASK_MAXREADYLISTCOUNT )
 	{
@@ -295,6 +334,10 @@ BOOL kChangePriority( QWORD qwTaskID, BYTE bPriority)
 
 	// 현재  실행 중인 태스크면 우선순위만 변경
 	// PIT 컨트롤러의 인터럽트(IRQ 0)이 발생하여 태스크 전환이 수행될 때 변경된 우선순위의 리스트로 이동
+
+	// 임계영역 시작.
+	bPreviousFlag = kLockForSystemData();
+
 	pstTarget = gs_stScheduler.pstRunningTask;
 	if( pstTarget->stNode.qwID == qwTaskID )
 	{
@@ -323,6 +366,8 @@ BOOL kChangePriority( QWORD qwTaskID, BYTE bPriority)
 		}
 	}
 
+	// 임계영역 끝
+	kUnlockForSystemData(bPreviousFlag);
 	return TRUE;
 
 }
@@ -342,12 +387,14 @@ void kSchedule(void)
 	}
 
 	// 전환하는 도중 인터럽트가 발생하여 태스크 전환이 또 일어나면 곤란하므로 전환하는 동안 인터럽트가 발생하지 못하도록 설정
-	bPreviousFlags = kSetInterruptFlag(FALSE);
+	// 임계영역 설정
+	bPreviousFlags = kLockForSystemData();
+
 	// 실행할 다음 태스크를 얻음
 	pstNextTask = kGetNextTaskToRun();
 	if( pstNextTask == NULL )
 	{
-		kSetInterruptFlag(bPreviousFlags);
+		kUnlockForSystemData(bPreviousFlags);
 		return;
 	}
 
@@ -379,7 +426,7 @@ void kSchedule(void)
 	}
 
 
-	kSetInterruptFlag(bPreviousFlags);
+	kUnlockForSystemData(bPreviousFlags);
 
 }
 
@@ -393,11 +440,17 @@ BOOL kScheduleInInterrupt( void )
 
 	char* pcContextAddress;
 
+	BOOL bPreviousFlag;
 	// 전환할 태스크가 없으면 종료
+	// 임계영역 설정
+	bPreviousFlag = kLockForSystemData();
+
 	pstNextTask = kGetNextTaskToRun();
 
 	if( pstNextTask == NULL )
 	{
+		// 임계영역 끝
+		kUnlockForSystemData(bPreviousFlag);
 		return FALSE;
 	}
 
@@ -438,6 +491,11 @@ BOOL kScheduleInInterrupt( void )
 
 	// 프로세서 사용 시간을 업데이트
 	gs_stScheduler.iProcessorTime = TASK_PROCESSORTIME;
+
+	// 임계영역 끝
+	kUnlockForSystemData(bPreviousFlag);
+
+
 	return TRUE;
 
 }
@@ -467,15 +525,21 @@ BOOL kEndTask( QWORD qwTaskID )
 
 	TCB* pstTarget;
 	BYTE bPriority;
-
+	BYTE bPreviousFlag;
 
 	// 현재 태스크는 뭐냐
+	// 임계 영역 시작
+	bPreviousFlag = kLockForSystemData();
+
 	pstTarget = gs_stScheduler.pstRunningTask;
 	// 현재 실행 중인 태스크면 EndTask 비트를 설정하고 태스크를 전환
 	if( pstTarget->stNode.qwID == qwTaskID )
 	{
 		pstTarget->qwFlags |= TASK_FLAGS_ENDTASK;
 		SETPRIORITY( pstTarget->qwFlags , TASK_FLAGS_WAIT );
+
+		// 임계 영역 끝.
+		kUnlockForSystemData(bPreviousFlag);
 
 		kSchedule();
 
@@ -496,6 +560,9 @@ BOOL kEndTask( QWORD qwTaskID )
 				SETPRIORITY( pstTarget->qwFlags , TASK_FLAGS_WAIT );
 			}
 			// 스케줄링(kSchedule())에서 대기 큐로 넣기때문에 FALSE를 반환하는듯 함.
+
+			// 임계영역 끝
+			kUnlockForSystemData(bPreviousFlag);
 			return FALSE;
 		}
 
@@ -506,6 +573,8 @@ BOOL kEndTask( QWORD qwTaskID )
 
 	}
 
+	// 임계 영역 끝
+	kUnlockForSystemData(bPreviousFlag);
 	return TRUE;
 
 }
@@ -524,12 +593,18 @@ int kGetReadyTaskCount( void )
 {
 	int iTotalCount = 0;
 	int i;
+	BOOL bPreviousFlag;
 
+	// 임계영역 시작
+	bPreviousFlag = kLockForSystemData();
 	// 모든 큐를 확인하여 태스크 개수를 구함
 	for( i=0; i<TASK_MAXREADYLISTCOUNT; i++)
 	{
 		iTotalCount += kGetListCount(&(gs_stScheduler.vstReadyList[i]) );
 	}
+
+	// 임계 영역 끝
+	kUnlockForSystemData(bPreviousFlag);
 
 	return iTotalCount;
 
@@ -540,10 +615,18 @@ int kGetReadyTaskCount( void )
 int kGetTaskCount(void)
 {
 	int iTotalCount;
+	BYTE bPreviousFlag;
 
 	//준비 큐의 태스크 수를 구한 후 대기 큐의 태스크 수와 현재 수행 중인 태스크 수를 더함.
+	// 임계영역 시작
+	bPreviousFlag = kLockForSystemData();
+
 	iTotalCount = kGetReadyTaskCount();
 	iTotalCount += kGetListCount( &(gs_stScheduler.stWaitList) )+1;
+
+	// 임계 영역 끝
+	kUnlockForSystemData(bPreviousFlag);
+
 	return iTotalCount;
 }
 
@@ -590,6 +673,8 @@ void kIdleTask( void )
 	TCB* pstTask;
 	QWORD qwLastMeasureTickCount, qwLastSpendTickInIdleTask;
 	QWORD qwCurrentMeasureTickCount, qwCurrentSpendTickInIdleTask;
+	BYTE bPreviousFlag;
+	QWORD qwTaskID;
 
 	// 프로세서 사용량을 계산을 위해 기준 정보를 저장
 	// gs_stScheduler.qwSpendProcessorTimeInIdleTask는 유휴 태스크가 프로세서를 다 사용하여 인터럽트가 발생할때 마다 값이 증가.
@@ -625,13 +710,24 @@ void kIdleTask( void )
 		{
 			while(1)
 			{
+				// 임계 영역 시작
+				bPreviousFlag = kLockForSystemData();
+
 				pstTask = kRemoveListFromHeader( &(gs_stScheduler.stWaitList) );
 				if( pstTask == NULL )
 				{
+					// 임계 영역 끝
+					kUnlockForSystemData(bPreviousFlag);
 					break;
 				}
+				qwTaskID = pstTask->stNode.qwID;
+				kFreeTCB( qwTaskID );
+
+				// 임계 영역 끝
+				kUnlockForSystemData(bPreviousFlag);
+
 				kPrintf("IDLE: Task ID[0x%q] is Completely ended. \n", pstTask->stNode.qwID );
-				kFreeTCB( pstTask->stNode.qwID );
+
 			}
 		}
 		kSchedule();

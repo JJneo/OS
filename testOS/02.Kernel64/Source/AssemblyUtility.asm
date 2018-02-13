@@ -11,7 +11,7 @@ global kEnableInterrupt, kDisableInterrupt, kReadRFLAGS
 global kReadTSC
 global kSwitchContext
 global kHlt
-
+global kTestAndSet
 
 
 ; 포트로부터 1바이트를 읽음
@@ -227,6 +227,32 @@ kHlt:
 	hlt
 	ret
 
+
+
+; 태스트와 설정을 하나의 명령으로 처리
+;	 function cmpxchg(p : pointer to int, old : int, new : int) returns bool {
+;	     if *p ≠ old {
+;	         return false
+;	     }
+;	     *p ← new
+;	     return true
+;	 }
+; 	PRAM : 값을 저장할 어드레스(Destination, rdi), 비교할 값( compare, rsi ), 설정할 값(Source, rdx)
+kTestAndSet:
+	mov rax, rsi		; 두번째 파라미터인 비교할 값을 RAX 레지스터에 저장.
+
+	; RAX 레지스터에 저장된 비교할 값과 첫 번째 파라미터의 메모리 어드레스의 값을 비교하여
+	; 두 값이 같다면 세 번째 파라미터의 값을 첫 번째 파라미터가 가리키는 어드레스로 삽입.
+	lock cmpxchg byte [rdi], dl
+	je .SUCCESS			; ZF 비트가 1이면 같다는 뜻임으로 .SUCCES로 이동
+
+.NOTDAME:			; Destination 과 Compare가 다른 경우.
+	mov rax, 0x00
+	ret
+
+.SUCCESS:			; Destination과 Compare가 같은 경우
+	mov rax, 0x01
+	ret
 
 
 

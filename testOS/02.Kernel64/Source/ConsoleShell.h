@@ -75,5 +75,7 @@ static void kShowTaskList( const char* pcParameterBuffer );
 static void kKillTask( const char* pcParameterBuffer );
 static void kCPULoad( const char* pcParameterBuffer );
 
+// Mutex
+static void kTestMutex( const char* pcParameterBuffer );
 
 #endif /* 02_KERNEL64_SOURCE_CONSOLESHELL_H_ */
